@@ -28,7 +28,6 @@ ALSnakeWorldPoint ALSnakeWorldPointMake(NSUInteger x, NSUInteger y);
 @end
 
 
-
 @interface ALSnakeWorld : NSObject
 
 #pragma Region

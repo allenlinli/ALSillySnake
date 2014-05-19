@@ -7,6 +7,7 @@
 //
 
 #import "ALSnakeView.h"
+#import "ALSnake.h"
 
 @implementation ALSnakeView
 
@@ -21,7 +22,29 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    // Drawing code
+    ALSnake *snake = [self.delegate snakeForSnakeView:self];
+    ALSnakeWorldSize worldSize = snake.world.size;
+    if (worldSize.width<=0 || worldSize.height<=0) {
+        return;
+    }
+    
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    /*
+     w * x = 螢幕上的x位置
+     w * y = 螢幕上的y位置
+     */
+    CGFloat w = self.bounds.size.width/worldSize.width;
+    CGFloat h = self.bounds.size.height/worldSize.height;
+
+    
+    if (snake) {
+        [[UIColor blackColor] set];
+        for (NSValue *value in snake.points) {
+            ALSnakeWorldPoint point = [value snakeWorldPointWithValue];
+            CGRect rect = CGRectMake(w*point.x, h*point.y, w, h);
+			CGContextFillRect(ctx, rect);
+        }
+    }
 }
 
 

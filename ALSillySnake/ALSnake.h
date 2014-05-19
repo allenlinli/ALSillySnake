@@ -25,7 +25,7 @@ typedef enum{
 @property (readonly, nonatomic) BOOL isHeadHitBody;
 
 #pragma Status
-@property (strong, nonatomic) NSMutableArray *body;
+@property (strong, nonatomic) NSMutableArray *points;
 @property (readonly, nonatomic) NSUInteger bodyLength;
 @property (assign, nonatomic) ALSnakeDirection direction;
 
@@ -41,5 +41,5 @@ typedef enum{
 //-(void)increaseLength;
 
 #pragma 外在關係
-@property (readonly, nonatomic) ALSnakeWorld *world;
+@property (weak, nonatomic) ALSnakeWorld *world;
 @end

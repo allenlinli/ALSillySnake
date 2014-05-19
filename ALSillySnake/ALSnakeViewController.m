@@ -7,12 +7,21 @@
 //
 
 #import "ALSnakeViewController.h"
+#import "ALSnake.h"
+#import "ALSnakeWorld.h"
+
+static
 
 @interface ALSnakeViewController ()
 
 #pragma UI
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *startButton;
+
+#pragma Objects
+@property (strong, nonatomic) ALSnakeWorld *world;
+@property (strong, nonatomic) ALSnake *snake;
+@property (weak, nonatomic) IBOutlet ALSnakeView *snakeView;
 
 #pragma Time
 @property (strong, nonatomic) NSTimer* timer;
@@ -50,9 +59,14 @@
     [self startGame];
 }
 
-//-(void)startGame{
+-(void)startGame{
 //    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(timerMethod:) userInfo:nil repeats:YES];
-//}
+    self.snakeView.delegate = self.snake;
+    
+    self.world = [[ALSnakeWorld alloc] initWithSize:ALSnakeWorldSizeMake(40, 40)];
+    self.snake = [[ALSnake alloc] initWithWorld:self.world length:3];
+
+}
 
 //-(void)runOneRound{
 //    self.timeLabel.text = [NSString stringWithFormat:@"time: %i",self.seconds];

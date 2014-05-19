@@ -18,7 +18,10 @@
 
 @implementation ALSnake
 
+
 -(ALSnake *)initWithWorld:(ALSnakeWorld *)world length:(NSUInteger)length{
+    self.world = world;
+    
     ALSnakeWorldSize worldSize = world.size;
     
     if (length<=0) {
@@ -31,12 +34,12 @@
     /* 本文 */
     self = [super init];
     if (self) {
-        self.body = [[NSMutableArray alloc]init];
+        self.points = [[NSMutableArray alloc]init];
         NSUInteger x = (NSUInteger) worldSize.width / 2.0;
         NSUInteger y = (NSUInteger) worldSize.height / 2.0;
         for (NSUInteger i = 0; i<length; i++) {
             NSValue *obj = [NSValue valueWithSnakeWorldPoint:ALSnakeWorldPointMake(x+i,y)];
-            [self.body addObject:obj];
+            [self.points addObject:obj];
         }
         self.direction = ALSnakeDirectionLeft;
     }
@@ -46,6 +49,6 @@
 }
 
 -(NSUInteger) bodyLength{
-    return self.body.count;
+    return self.points.count;
 }
 @end

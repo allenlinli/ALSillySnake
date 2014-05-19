@@ -26,6 +26,7 @@
 		E31AB7091929BB0C00FC4859 /* ALSnakeWorldTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E31AB7081929BB0C00FC4859 /* ALSnakeWorldTest.m */; };
 		E31AB70B1929BB1F00FC4859 /* ALSnakeViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E31AB70A1929BB1F00FC4859 /* ALSnakeViewControllerTest.m */; };
 		E31AB70E1929F64D00FC4859 /* ALSnakeView.m in Sources */ = {isa = PBXBuildFile; fileRef = E31AB70D1929F64D00FC4859 /* ALSnakeView.m */; };
+		E31AB710192A02DB00FC4859 /* ALSnakeViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E31AB70F192A02DB00FC4859 /* ALSnakeViewTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		E31AB70A1929BB1F00FC4859 /* ALSnakeViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALSnakeViewControllerTest.m; sourceTree = "<group>"; };
 		E31AB70C1929F64D00FC4859 /* ALSnakeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALSnakeView.h; sourceTree = "<group>"; };
 		E31AB70D1929F64D00FC4859 /* ALSnakeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALSnakeView.m; sourceTree = "<group>"; };
+		E31AB70F192A02DB00FC4859 /* ALSnakeViewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALSnakeViewTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +161,7 @@
 				E31AB6EB1929B08000FC4859 /* Supporting Files */,
 				E31AB7061929BAFC00FC4859 /* ALSnakeTest.m */,
 				E31AB7081929BB0C00FC4859 /* ALSnakeWorldTest.m */,
+				E31AB70F192A02DB00FC4859 /* ALSnakeViewTest.m */,
 				E31AB70A1929BB1F00FC4859 /* ALSnakeViewControllerTest.m */,
 			);
 			path = ALSillySnakeTests;
@@ -285,6 +288,7 @@
 			files = (
 				E31AB7091929BB0C00FC4859 /* ALSnakeWorldTest.m in Sources */,
 				E31AB7071929BAFC00FC4859 /* ALSnakeTest.m in Sources */,
+				E31AB710192A02DB00FC4859 /* ALSnakeViewTest.m in Sources */,
 				E31AB70B1929BB1F00FC4859 /* ALSnakeViewControllerTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

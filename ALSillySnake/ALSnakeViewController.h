@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ALSnakeView.h"
 
 
 
-
-@interface ALSnakeViewController : UIViewController
+@interface ALSnakeViewController : UIViewController 
 
 #pragma Game State
 -(void)startGame;
