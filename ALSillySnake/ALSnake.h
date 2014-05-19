@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ALSnakeWorld.h"
+#import "ALSnakeStrucs.h"
 
 typedef enum{
     ALSnakeDirectionLeft,
@@ -16,10 +16,9 @@ typedef enum{
     ALSnakeDirectionDown
 }ALSnakeDirection;
 
+@class ALSnakeWorld;
+
 @interface ALSnake : NSObject
-
-
-
 
 /* if yes, the snake is dead. */
 @property (readonly, nonatomic) BOOL isHeadHitBody;
@@ -31,7 +30,6 @@ typedef enum{
 
 
 #pragma Move
-
 -(ALSnake *)initWithWorld:(ALSnakeWorld *)world length:(NSUInteger)length;
 
 /* Move a dot */
@@ -39,7 +37,4 @@ typedef enum{
 
 /* increase length by eat fruit */
 //-(void)increaseLength;
-
-#pragma 外在關係
-@property (weak, nonatomic) ALSnakeWorld *world;
 @end

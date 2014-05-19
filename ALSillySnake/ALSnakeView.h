@@ -8,15 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "ALSnakeWorld.h"
+#import "ALSnake.h"
+#import "ALSnakeViewProtocol.h"
 
 @class ALSnake;
 @class ALSnakeView;
 
-@protocol ALSnakeViewDelegate <NSObject>
--(ALSnake *)snakeForSnakeView:(ALSnakeView *)view;
-@end
+
 
 @interface ALSnakeView : UIView
 @property (assign, nonatomic) ALSnakeWorldSize worldSize;
-@property (weak, nonatomic) id <ALSnakeViewDelegate> delegate;
+@property (weak, nonatomic) id <ALSnakeViewProtocol> delegate;
 @end

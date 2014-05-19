@@ -7,20 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-
-typedef struct{
-    NSUInteger width;
-	NSUInteger height;
-}ALSnakeWorldSize;
-ALSnakeWorldSize ALSnakeWorldSizeMake(NSUInteger width, NSUInteger height);
-
-typedef struct{
-    NSUInteger x;
-	NSUInteger y;
-}ALSnakeWorldPoint;
-ALSnakeWorldPoint ALSnakeWorldPointMake(NSUInteger x, NSUInteger y);
-
-@class ALSnakeWorld;
+#import "ALSnakeViewProtocol.h"
+#import "ALSnakeStrucs.h"
 
 @interface NSValue (ALSnakeWorldPoint)
 + (id)valueWithSnakeWorldPoint:(ALSnakeWorldPoint)point;

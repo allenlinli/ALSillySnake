@@ -8,21 +8,15 @@
 
 #import "ALSnake.h"
 
-@interface ALSnake ()
-
-
-
-@end
-
 
 
 @implementation ALSnake
 
 
 -(ALSnake *)initWithWorld:(ALSnakeWorld *)world length:(NSUInteger)length{
-    self.world = world;
+//    self.world = world;
     
-    ALSnakeWorldSize worldSize = world.size;
+//    ALSnakeWorldSize worldSize = world.size;
     
     if (length<=0) {
         return nil;
