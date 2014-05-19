@@ -10,7 +10,9 @@
 #import "ALSnakeWorld.h"
 
 @interface ALSnakeWorldTest : XCTestCase
-
+@property (assign, nonatomic) ALSnakeWorldSize worldSize;
+@property (assign, nonatomic) NSUInteger width;
+@property (assign, nonatomic) NSUInteger height;
 @end
 
 @implementation ALSnakeWorldTest
@@ -18,6 +20,11 @@
 - (void)setUp
 {
     [super setUp];
+    
+    self.width = 20;
+    self.height = 20;
+    self.worldSize = ALSnakeWorldSizeMake(self.width, self.height);
+
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
@@ -29,24 +36,17 @@
 
 - (void)testWorldSizeMake
 {
-    NSUInteger width = 20;
-    NSUInteger height = 20;
-    ALSnakeWorldSize worldSize = ALSnakeWorldSizeMake(width, height);
-    
-    XCTAssertTrue(worldSize.width == width, @"! worldSize.width == 20");
-    XCTAssertTrue(worldSize.height == height, @"! worldSize.height == 20");
+    ALSnakeWorldSize worldSize = self.worldSize;
+    XCTAssertTrue(worldSize.width == self.width, @"! worldSize.width == 20");
+    XCTAssertTrue(worldSize.height == self.height, @"! worldSize.height == 20");
 }
 
 - (void)testInitWorld
 {
-    NSUInteger width = 20;
-    NSUInteger height = 20;
-    ALSnakeWorldSize worldSize = ALSnakeWorldSizeMake(width, height);
+    ALSnakeWorld *world = [[ALSnakeWorld alloc] initWithSize:self.worldSize];
     
-    ALSnakeWorld *world = [[ALSnakeWorld alloc] initWithSize:worldSize];
-    
-    XCTAssertTrue(world.size.width == width, @"! world.size.width == width");
-    XCTAssertTrue(world.size.height == height, @"! world.size.height == height");
+    XCTAssertTrue(world.size.width == self.width, @"! world.size.width == width");
+    XCTAssertTrue(world.size.height == self.height, @"! world.size.height == height");
 }
 
 @end
