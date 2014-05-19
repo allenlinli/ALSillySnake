@@ -50,13 +50,13 @@
     [self startGame];
 }
 
--(void)startGame{
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(timerMethod:) userInfo:nil repeats:YES];
-}
+//-(void)startGame{
+//    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(timerMethod:) userInfo:nil repeats:YES];
+//}
 
--(void)runOneRound{
-    self.timeLabel.text = [NSString stringWithFormat:@"time: %i",self.seconds];
-}
+//-(void)runOneRound{
+//    self.timeLabel.text = [NSString stringWithFormat:@"time: %i",self.seconds];
+//}
 
 /*
 #pragma mark - Navigation

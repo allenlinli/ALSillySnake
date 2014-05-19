@@ -18,16 +18,16 @@
 
 @implementation ALSnake
 
--(ALSnake *)initWithWorldSize:(ALSnakeWorldSize)worldSize length:(NSUInteger)length{
+-(ALSnake *)initWithWorld:(ALSnakeWorld *)world length:(NSUInteger)length{
+    ALSnakeWorldSize worldSize = world.size;
     
-    /* 錯誤處理 */
     if (length<=0) {
         return nil;
     }
     else if (worldSize.width <= 5 || worldSize.height <=5){
         return nil;
     }
-    
+
     /* 本文 */
     self = [super init];
     if (self) {

@@ -32,14 +32,14 @@ typedef enum{
 
 #pragma Move
 
--(ALSnake *)initWithWorldSize:(ALSnakeWorldSize)worldSize length:(NSUInteger)length;
+-(ALSnake *)initWithWorld:(ALSnakeWorld *)world length:(NSUInteger)length;
 
 /* Move a dot */
--(void)move:(ALSnakeDirection)direction;
+//-(void)move:(ALSnakeDirection)direction;
 
 /* increase length by eat fruit */
--(void)increaseLength;
+//-(void)increaseLength;
 
 #pragma 外在關係
-@property (readonly, nonatomic) ALSnakeWorldSize worldSize;
+@property (readonly, nonatomic) ALSnakeWorld *world;
 @end

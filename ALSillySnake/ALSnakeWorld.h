@@ -33,9 +33,13 @@ ALSnakeWorldPoint ALSnakeWorldPointMake(NSUInteger x, NSUInteger y);
 
 #pragma Region
 @property (assign, nonatomic) BOOL isWallBounded;
+@property (assign, nonatomic) ALSnakeWorldSize size;
+
+#pragma Init
+-(ALSnakeWorld *)initWithSize:(ALSnakeWorldSize)size;
 
 #pragma Fruit Generator
--(ALSnakeWorldPoint) fruitWolrdPointWithSnakeWorldPointX:(NSUInteger)x y:(NSUInteger)y;
+//-(ALSnakeWorldPoint) fruitWolrdPointWithSnakeWorldPointX:(NSUInteger)x y:(NSUInteger)y;
 
 @end
 

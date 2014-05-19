@@ -37,4 +37,16 @@
     XCTAssertTrue(worldSize.height == height, @"! worldSize.height == 20");
 }
 
+- (void)testInitWorld
+{
+    NSUInteger width = 20;
+    NSUInteger height = 20;
+    ALSnakeWorldSize worldSize = ALSnakeWorldSizeMake(width, height);
+    
+    ALSnakeWorld *world = [[ALSnakeWorld alloc] initWithSize:worldSize];
+    
+    XCTAssertTrue(world.size.width == width, @"! world.size.width == width");
+    XCTAssertTrue(world.size.height == height, @"! world.size.height == height");
+}
+
 @end

@@ -40,3 +40,21 @@ ALSnakeWorldPoint ALSnakeWorldPointMake(NSUInteger x, NSUInteger y){
     return point;
 }
 @end
+
+@implementation ALSnakeWorld
+
+-(ALSnakeWorld *)initWithSize:(ALSnakeWorldSize)size{
+    /* Error handle */
+    if (size.height<5 || size.width<5){
+        return nil;
+    }
+    
+    self = [super init];
+    if (self) {
+        self.size = size;
+    }
+    
+    return self;
+}
+
+@end

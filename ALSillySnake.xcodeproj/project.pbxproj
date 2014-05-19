@@ -25,6 +25,7 @@
 		E31AB7071929BAFC00FC4859 /* ALSnakeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E31AB7061929BAFC00FC4859 /* ALSnakeTest.m */; };
 		E31AB7091929BB0C00FC4859 /* ALSnakeWorldTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E31AB7081929BB0C00FC4859 /* ALSnakeWorldTest.m */; };
 		E31AB70B1929BB1F00FC4859 /* ALSnakeViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E31AB70A1929BB1F00FC4859 /* ALSnakeViewControllerTest.m */; };
+		E31AB70E1929F64D00FC4859 /* ALSnakeView.m in Sources */ = {isa = PBXBuildFile; fileRef = E31AB70D1929F64D00FC4859 /* ALSnakeView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,8 @@
 		E31AB7061929BAFC00FC4859 /* ALSnakeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALSnakeTest.m; sourceTree = "<group>"; };
 		E31AB7081929BB0C00FC4859 /* ALSnakeWorldTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALSnakeWorldTest.m; sourceTree = "<group>"; };
 		E31AB70A1929BB1F00FC4859 /* ALSnakeViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALSnakeViewControllerTest.m; sourceTree = "<group>"; };
+		E31AB70C1929F64D00FC4859 /* ALSnakeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALSnakeView.h; sourceTree = "<group>"; };
+		E31AB70D1929F64D00FC4859 /* ALSnakeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALSnakeView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +132,8 @@
 				E31AB7041929B66300FC4859 /* ALSnakeViewController.m */,
 				E31AB6FD1929B16000FC4859 /* ALSnake.h */,
 				E31AB6FE1929B16000FC4859 /* ALSnake.m */,
+				E31AB70C1929F64D00FC4859 /* ALSnakeView.h */,
+				E31AB70D1929F64D00FC4859 /* ALSnakeView.m */,
 				E31AB7001929B1B800FC4859 /* ALSnakeWorld.h */,
 				E31AB7011929B1B800FC4859 /* ALSnakeWorld.m */,
 				E31AB6DD1929B08000FC4859 /* Images.xcassets */,
@@ -265,6 +270,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E31AB70E1929F64D00FC4859 /* ALSnakeView.m in Sources */,
 				E31AB7051929B66300FC4859 /* ALSnakeViewController.m in Sources */,
 				E31AB7021929B1B800FC4859 /* ALSnakeWorld.m in Sources */,
 				E31AB6D61929B08000FC4859 /* AppDelegate.m in Sources */,
@@ -476,6 +482,7 @@
 				E31AB6F61929B08000FC4859 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E31AB6F71929B08000FC4859 /* Build configuration list for PBXNativeTarget "ALSillySnakeTests" */ = {
 			isa = XCConfigurationList;
@@ -484,6 +491,7 @@
 				E31AB6F91929B08000FC4859 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
