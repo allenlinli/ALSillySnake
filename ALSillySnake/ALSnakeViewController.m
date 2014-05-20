@@ -41,7 +41,23 @@
     
 }
 
-
+-(void)addGestureRecognizerWithFourDerictions{
+    UISwipeGestureRecognizer *gestureRecognizer0 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe:)];
+	gestureRecognizer0.direction = UISwipeGestureRecognizerDirectionRight;
+	[self.snakeView addGestureRecognizer:gestureRecognizer0];
+    
+    UISwipeGestureRecognizer *gestureRecognizer1 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe:)];
+	gestureRecognizer1.direction = UISwipeGestureRecognizerDirectionLeft;
+	[self.snakeView addGestureRecognizer:gestureRecognizer1];
+    
+    UISwipeGestureRecognizer *gestureRecognizer2 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe:)];
+	gestureRecognizer2.direction = UISwipeGestureRecognizerDirectionUp;
+	[self.snakeView addGestureRecognizer:gestureRecognizer2];
+    
+    UISwipeGestureRecognizer *gestureRecognizer3 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe:)];
+	gestureRecognizer3.direction = UISwipeGestureRecognizerDirectionDown;
+	[self.snakeView addGestureRecognizer:gestureRecognizer3];
+}
 
 - (void)viewDidLoad
 {
@@ -51,12 +67,12 @@
     [self startButtonPressed:nil];
     
     //加上手勢滑動
-    UISwipeGestureRecognizer *gestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe:)];
-	gestureRecognizer.direction = UISwipeGestureRecognizerDirectionRight | UISwipeGestureRecognizerDirectionLeft | UISwipeGestureRecognizerDirectionUp | UISwipeGestureRecognizerDirectionDown;
-	[self.snakeView addGestureRecognizer:gestureRecognizer];
+    [self addGestureRecognizerWithFourDerictions];
 }
 
 -(void)swipe:(UISwipeGestureRecognizer *)gestureRecognizer{
+    NSLog(@"gestureRecognizer:%@",gestureRecognizer);
+    
     switch (gestureRecognizer.direction) {
         case UISwipeGestureRecognizerDirectionRight:
             self.snake.direction = ALSnakeDirectionRight;

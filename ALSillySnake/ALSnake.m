@@ -45,6 +45,9 @@
     return self;
 }
 
+-(UIColor *)color{
+    return [UIColor blackColor];
+}
 
 -(void)setDirection:(ALSnakeDirection)direction{
     
@@ -101,10 +104,10 @@
             xOffset = 1;
             break;
         case ALSnakeDirectionUp:
-            yOffset = 1;
+            yOffset = -1;
             break;
         case ALSnakeDirectionDown:
-            yOffset = -1;
+            yOffset = 1;
             break;
         default:
             break;

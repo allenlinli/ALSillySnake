@@ -42,6 +42,8 @@ typedef enum{
 
 @property (readonly, weak, nonatomic) ALSnakeWorld *world;
 
+@property (strong, nonatomic) UIColor *color;
+
 #pragma Move
 /* if yes, the snake is dead. */
 @property (readonly, nonatomic) BOOL isDead;
