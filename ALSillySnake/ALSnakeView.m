@@ -44,7 +44,7 @@
     
     if (snake) {
         [[UIColor blackColor] set];
-        for (NSValue *value in snake.points) {
+        for (NSValue *value in snake.bodyPoints) {
             ALSnakeWorldPoint point = [value snakeWorldPointWithValue];
             CGRect rect = CGRectMake( widthOfABlockOnScreen * point.x, heightOfABlockOnScreen*point.y, widthOfABlockOnScreen, heightOfABlockOnScreen);
 			CGContextFillRect(contextRef, rect);

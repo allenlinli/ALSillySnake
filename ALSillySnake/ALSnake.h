@@ -36,8 +36,7 @@ typedef enum{
 
 
 #pragma Status
-@property (strong, nonatomic) NSMutableArray *points;
-@property (readonly, nonatomic) NSUInteger bodyLength;
+@property (strong, nonatomic) NSMutableArray *bodyPoints;
 
 @property (assign, nonatomic) ALSnakeDirection direction;
 

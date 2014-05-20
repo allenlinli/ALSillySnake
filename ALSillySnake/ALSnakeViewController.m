@@ -86,7 +86,7 @@
     
     [self.snake move];
     
-    NSValue *value = self.snake.points[0];
+    NSValue *value = self.snake.bodyPoints[0];
     ALSnakeWorldPoint head = [value snakeWorldPointWithValue];
     
     

@@ -47,9 +47,9 @@
     ALSnake *snake = self.snake;
     
     for (NSUInteger i = 0; i<self.snake.bodyLength; i++) {
-        NSValue *value = snake.points[i];
+        NSValue *value = snake.bodyPoints[i];
         XCTAssertNotNil(value, @"snake.body[i] is nil");
-        ALSnakeWorldPoint body = [snake.points[i] snakeWorldPointWithValue];
+        ALSnakeWorldPoint body = [snake.bodyPoints[i] snakeWorldPointWithValue];
         XCTAssertTrue(body.x == self.world.size.width/2.0+i && body.y ==  self.world.size.height/2.0,@"! (body.x == width/2.0+i && body.y == height/2.0)");
     }
     

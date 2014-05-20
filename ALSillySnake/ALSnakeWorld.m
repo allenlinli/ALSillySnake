@@ -25,4 +25,12 @@
     return self;
 }
 
+//-(ALSnakeWorldPoint)fruitWolrdPointWithSnakeWorldPointX:(NSUInteger)x y:(NSUInteger)y{
+//    //產生一個蘋果
+//    
+//    //蘋果要避免產生在有蛇的地方
+//    
+//    
+//}
+
 @end

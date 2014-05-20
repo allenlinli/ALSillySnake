@@ -21,11 +21,14 @@
  */
 @interface ALSnakeWorld : NSObject 
 
-#pragma Region  //邊界大小
+//邊界大小
 @property (assign, nonatomic) ALSnakeWorldSize size;
 
-#pragma Snake //擁有一隻蛇
+//擁有一隻蛇
 @property (strong, nonatomic) ALSnake *snake;
+
+//擁有一個蘋果
+@property (assign, nonatomic) ALSnakeWorldPoint *fruitPoint;
 
 #pragma Init
 -(ALSnakeWorld *)initWithSize:(ALSnakeWorldSize)size;
