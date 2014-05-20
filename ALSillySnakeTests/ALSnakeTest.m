@@ -56,6 +56,16 @@
     XCTAssert(snake.direction == ALSnakeDirectionLeft, @"! snake.direction == ALSnakeDirectionLeft");
 }
 
+-(void)testMove{
+    ALSnake *snake = self.snake;
+    
+    ALSnakeWorldPoint originalHeadPoint = [(NSValue *)[snake.bodyPoints firstObject] snakeWorldPointWithValue];
+    
+    //Test move left
+    [snake move];
+    ALSnakeWorldPoint newHeadPoint = [(NSValue *)[snake.bodyPoints firstObject] snakeWorldPointWithValue];
+    XCTAssertTrue(newHeadPoint.x == originalHeadPoint.x -1, @"newHeadPoint.x == originalHeadPoint.x -1");
+}
 
 
 @end

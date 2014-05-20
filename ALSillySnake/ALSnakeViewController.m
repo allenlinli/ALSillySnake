@@ -38,11 +38,24 @@
     return self;
 }
 
+- (void)addGestureRecognizerWithFourDirections
+{
+	UISwipeGestureRecognizer *gestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe:)];
+	gestureRecognizer.direction = UISwipeGestureRecognizerDirectionRight | UISwipeGestureRecognizerDirectionLeft | UISwipeGestureRecognizerDirectionUp | UISwipeGestureRecognizerDirectionDown;
+	[self.snakeView addGestureRecognizer:gestureRecognizer];
+}
+
 - (void)viewDidLoad
 {
+    // for testing
+    [self startButtonPressed:nil];
+    
     [super viewDidLoad];
 }
 
+-(void)swipe:(UISwipeGestureRecognizer *)gestureRecognizer{
+    
+}
 
 - (void)didReceiveMemoryWarning
 {

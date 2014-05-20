@@ -68,10 +68,19 @@
 
 
 -(ALSnakeWorldPoint)headingPoint{
+    /*
+     功能：
+     1. 前進一格
+     2. 穿牆
+     
+     實作：
+     1. 使用 mod 來做穿牆
+     2. 使用 xOffset, yOffset
+     
+     */
+    
     //結果的值
     ALSnakeWorldPoint headingPoint;
-    NSUInteger headingX;
-    NSUInteger headingY;
     
     //工具的值
     NSUInteger worldWidth = self.world.size.width;
@@ -81,18 +90,18 @@
     NSUInteger headY = self.headPoint.y;
     
     //先計算出Offset
-    NSInteger xOffset;
-    NSInteger yOffset;
+    NSInteger xOffset = 0;
+    NSInteger yOffset = 0;
     
     switch (self.direction) {
         case ALSnakeDirectionLeft:
             xOffset = -1;
             break;
-        case ALSnakeDirectionUp:
-            yOffset = 1;
-            break;
         case ALSnakeDirectionRight:
             xOffset = 1;
+            break;
+        case ALSnakeDirectionUp:
+            yOffset = 1;
             break;
         case ALSnakeDirectionDown:
             yOffset = -1;
@@ -101,8 +110,21 @@
             break;
     }
     
-    headingX = ((NSInteger)headX + xOffset) % worldWidth;
-    headingY = ((NSInteger)headY + yOffset) % worldHeight;
+    NSInteger x = headX + xOffset;
+    NSInteger y = headY + yOffset;
+    
+    while (x<0) {
+        x += worldWidth;
+    }
+    while (y<0) {
+        y += worldHeight;
+    }
+    
+    NSUInteger headingX = x % worldWidth;
+    NSUInteger headingY = y % worldHeight;
+    
+//    NSUInteger headingX2 = (41) % worldWidth; // 15 = -1 % 40
+    NSLog(@"headingX: %i", headingX);
     
     headingPoint.x = headingX;
     headingPoint.y = headingY;
@@ -116,7 +138,9 @@
 }
 
 -(void)move{
-    
+    /*
+     功能：前進、吃水果、撞牆死掉
+     */
     if (self.isDead) {
         return;
     }
@@ -124,30 +148,15 @@
         return;
     }
     
-    //頭前面是水果的話，吃掉它
+    //# 頭前面是水果的話，吃掉它
     
-    //頭前面是蛇的身體的話，就會死掉
+    //# 頭前面是蛇的身體的話，就會死掉
     
-    //頭前面是牆壁的話，就會穿牆
-    //橫的穿牆
-    if (self.headingPoint.x < 0){
-        
-    }
-    else if(self.headingPoint.x >= self.world.size.width) {
-        
-    }
-    else if(self.headingPoint.y < 0){
-        
-    }
-     else if(self.headingPoint.y >= self.world.size.height){
-        
-    }
-    
-    //剩下情況，就會前進一格
-    
-    
+    //# 剩下情況，就會前進一格
     
     //頭增加一格。enqueue
+//    NSLog(@"self.headingPointX: %i",self.headingPoint.x);
+//    NSLog(@"self.headingPointY: %i",self.headingPoint.y);
     [self.bodyPoints insertObject:[NSValue valueWithSnakeWorldPoint:self.headingPoint] atIndex:0];
     
     //尾巴少掉一格。dequeue
