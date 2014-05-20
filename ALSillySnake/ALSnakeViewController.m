@@ -37,24 +37,42 @@
     }
     return self;
 }
+- (IBAction)segmentControllerPressed:(id)sender {
+    
+}
 
-- (void)addGestureRecognizerWithFourDirections
+
+
+- (void)viewDidLoad
 {
-	UISwipeGestureRecognizer *gestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe:)];
+    [super viewDidLoad];
+    
+    // for testing
+    [self startButtonPressed:nil];
+    
+    //加上手勢滑動
+    UISwipeGestureRecognizer *gestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe:)];
 	gestureRecognizer.direction = UISwipeGestureRecognizerDirectionRight | UISwipeGestureRecognizerDirectionLeft | UISwipeGestureRecognizerDirectionUp | UISwipeGestureRecognizerDirectionDown;
 	[self.snakeView addGestureRecognizer:gestureRecognizer];
 }
 
-- (void)viewDidLoad
-{
-    // for testing
-    [self startButtonPressed:nil];
-    
-    [super viewDidLoad];
-}
-
 -(void)swipe:(UISwipeGestureRecognizer *)gestureRecognizer{
-    
+    switch (gestureRecognizer.direction) {
+        case UISwipeGestureRecognizerDirectionRight:
+            self.snake.direction = ALSnakeDirectionRight;
+            break;
+        case UISwipeGestureRecognizerDirectionLeft:
+            self.snake.direction = ALSnakeDirectionLeft;
+            break;
+        case UISwipeGestureRecognizerDirectionUp:
+            self.snake.direction = ALSnakeDirectionUp;
+            break;
+        case UISwipeGestureRecognizerDirectionDown:
+            self.snake.direction = ALSnakeDirectionDown;
+            break;
+        default:
+            break;
+    }
 }
 
 - (void)didReceiveMemoryWarning

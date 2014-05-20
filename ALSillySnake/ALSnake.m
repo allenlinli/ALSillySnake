@@ -123,9 +123,6 @@
     NSUInteger headingX = x % worldWidth;
     NSUInteger headingY = y % worldHeight;
     
-//    NSUInteger headingX2 = (41) % worldWidth; // 15 = -1 % 40
-    NSLog(@"headingX: %i", headingX);
-    
     headingPoint.x = headingX;
     headingPoint.y = headingY;
     
