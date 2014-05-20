@@ -9,16 +9,6 @@
 #import "ALSnakeWorld.h"
 
 
-ALSnakeWorldSize ALSnakeWorldSizeMake(NSUInteger width, NSUInteger height){
-    ALSnakeWorldSize worldSize;
-    worldSize.width = width;
-    worldSize.height = height;
-    return worldSize;
-}
-
-
-
-
 @implementation ALSnakeWorld
 
 -(ALSnakeWorld *)initWithSize:(ALSnakeWorldSize)size{
