@@ -6,9 +6,10 @@
 //  Copyright (c) 2014 KKBOX. All rights reserved.
 //
 
+#import "ALSnakeWorld.h"
 #import "ALSnake.h"
 #import "NSValue+ALSnakeValue.h"
-#import "ALSnakeWorld.h"
+
 
 @implementation ALSnake
 
@@ -45,4 +46,7 @@
     return self.points.count;
 }
 
+-(void)move{
+    
+}
 @end

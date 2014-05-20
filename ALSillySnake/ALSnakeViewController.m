@@ -68,6 +68,27 @@
     self.snake = [[ALSnake alloc] initWithWorld:self.world length:3];
     
     //uncomplete
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(runOneRound) userInfo:nil repeats:YES];
+    
+}
+
+-(void)runOneRound{
+    if (!self.snake || !self.world) {
+        //Error
+        return;
+    }
+    
+    if (self.snake.isHeadHitBody) {
+        [self endGame];
+        return;
+    }
+    
+    [self.snake move];
+    
+    ALSnakeWorldPoint head = self.snake
+    
+    
+    [self.snakeView setNeedsDisplay];
 }
 
 -(ALSnakeWorld *)snakeWorldForSnakeView:(ALSnakeView *)view{

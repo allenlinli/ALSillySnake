@@ -50,7 +50,8 @@ typedef enum{
 -(ALSnake *)initWithWorld:(ALSnakeWorld *)world length:(NSUInteger)length;
 
 /* Move a dot */
--(void)move:(ALSnakeDirection)direction;
+-(void)move;
+
 
 /* increase length by eat fruit */
 -(void)increaseLength;
