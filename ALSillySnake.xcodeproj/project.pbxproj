@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E31431C5192AF3B000F8C8D7 /* NSValue+ALSnakeValue.m in Sources */ = {isa = PBXBuildFile; fileRef = E31431C4192AF3B000F8C8D7 /* NSValue+ALSnakeValue.m */; };
 		E31AB6C61929B08000FC4859 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E31AB6C51929B08000FC4859 /* Foundation.framework */; };
 		E31AB6C81929B08000FC4859 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E31AB6C71929B08000FC4859 /* CoreGraphics.framework */; };
 		E31AB6CA1929B08000FC4859 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E31AB6C91929B08000FC4859 /* UIKit.framework */; };
@@ -42,6 +43,8 @@
 /* Begin PBXFileReference section */
 		E31431C0192A19E400F8C8D7 /* ALSnakeViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALSnakeViewProtocol.h; sourceTree = "<group>"; };
 		E31431C1192A1B5C00F8C8D7 /* ALSnakeStrucs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALSnakeStrucs.h; sourceTree = "<group>"; };
+		E31431C3192AF3B000F8C8D7 /* NSValue+ALSnakeValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSValue+ALSnakeValue.h"; sourceTree = "<group>"; };
+		E31431C4192AF3B000F8C8D7 /* NSValue+ALSnakeValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSValue+ALSnakeValue.m"; sourceTree = "<group>"; };
 		E31AB6C21929B08000FC4859 /* ALSillySnake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ALSillySnake.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E31AB6C51929B08000FC4859 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E31AB6C71929B08000FC4859 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -96,6 +99,60 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E31431C7192AF67300F8C8D7 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				E31431C3192AF3B000F8C8D7 /* NSValue+ALSnakeValue.h */,
+				E31431C4192AF3B000F8C8D7 /* NSValue+ALSnakeValue.m */,
+			);
+			name = Category;
+			sourceTree = "<group>";
+		};
+		E31431C8192AF68100F8C8D7 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				E31431C0192A19E400F8C8D7 /* ALSnakeViewProtocol.h */,
+			);
+			name = Protocol;
+			sourceTree = "<group>";
+		};
+		E31431C9192AF69000F8C8D7 /* Structure */ = {
+			isa = PBXGroup;
+			children = (
+				E31431C1192A1B5C00F8C8D7 /* ALSnakeStrucs.h */,
+			);
+			name = Structure;
+			sourceTree = "<group>";
+		};
+		E31431CA192AF69A00F8C8D7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E31AB6FD1929B16000FC4859 /* ALSnake.h */,
+				E31AB6FE1929B16000FC4859 /* ALSnake.m */,
+				E31AB7001929B1B800FC4859 /* ALSnakeWorld.h */,
+				E31AB7011929B1B800FC4859 /* ALSnakeWorld.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		E31431CB192AFE3C00F8C8D7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E31AB70C1929F64D00FC4859 /* ALSnakeView.h */,
+				E31AB70D1929F64D00FC4859 /* ALSnakeView.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		E31431CC192AFE4D00F8C8D7 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E31AB7031929B66300FC4859 /* ALSnakeViewController.h */,
+				E31AB7041929B66300FC4859 /* ALSnakeViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 		E31AB6B91929B08000FC4859 = {
 			isa = PBXGroup;
 			children = (
@@ -132,16 +189,12 @@
 				E31AB6D41929B08000FC4859 /* AppDelegate.h */,
 				E31AB6D51929B08000FC4859 /* AppDelegate.m */,
 				E31AB6D71929B08000FC4859 /* Main.storyboard */,
-				E31AB7031929B66300FC4859 /* ALSnakeViewController.h */,
-				E31AB7041929B66300FC4859 /* ALSnakeViewController.m */,
-				E31AB6FD1929B16000FC4859 /* ALSnake.h */,
-				E31AB6FE1929B16000FC4859 /* ALSnake.m */,
-				E31AB70C1929F64D00FC4859 /* ALSnakeView.h */,
-				E31AB70D1929F64D00FC4859 /* ALSnakeView.m */,
-				E31AB7001929B1B800FC4859 /* ALSnakeWorld.h */,
-				E31431C1192A1B5C00F8C8D7 /* ALSnakeStrucs.h */,
-				E31AB7011929B1B800FC4859 /* ALSnakeWorld.m */,
-				E31431C0192A19E400F8C8D7 /* ALSnakeViewProtocol.h */,
+				E31431CC192AFE4D00F8C8D7 /* Controller */,
+				E31431CB192AFE3C00F8C8D7 /* View */,
+				E31431CA192AF69A00F8C8D7 /* Model */,
+				E31431C9192AF69000F8C8D7 /* Structure */,
+				E31431C8192AF68100F8C8D7 /* Protocol */,
+				E31431C7192AF67300F8C8D7 /* Category */,
 				E31AB6DD1929B08000FC4859 /* Images.xcassets */,
 				E31AB6CC1929B08000FC4859 /* Supporting Files */,
 			);
@@ -279,6 +332,7 @@
 			files = (
 				E31AB70E1929F64D00FC4859 /* ALSnakeView.m in Sources */,
 				E31AB7051929B66300FC4859 /* ALSnakeViewController.m in Sources */,
+				E31431C5192AF3B000F8C8D7 /* NSValue+ALSnakeValue.m in Sources */,
 				E31AB7021929B1B800FC4859 /* ALSnakeWorld.m in Sources */,
 				E31AB6D61929B08000FC4859 /* AppDelegate.m in Sources */,
 				E31AB6D21929B08000FC4859 /* main.m in Sources */,

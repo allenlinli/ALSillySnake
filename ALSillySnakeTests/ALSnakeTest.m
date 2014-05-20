@@ -9,6 +9,7 @@
 #import <XCTest/XCTest.h>
 #import "ALSnake.h"
 #import "ALSnakeWorld.h"
+#import "NSValue+ALSnakeValue.h"
 
 @interface ALSnakeTest : XCTestCase
 @property (strong, nonatomic) ALSnake *snake;
@@ -28,7 +29,7 @@
     NSUInteger height = 20;
     ALSnakeWorldSize worldSize = ALSnakeWorldSizeMake(width, height);
     self.world = [[ALSnakeWorld alloc]initWithSize:worldSize];
-    self.snake = [[ALSnake alloc]initWithWorld:self.world length:length];
+    self.snake = [[ALSnake alloc]initWithWorldSize:self.world.size length:length];
     
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }

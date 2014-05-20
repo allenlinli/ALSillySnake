@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "ALSnakeStrucs.h"
 
+
 typedef enum{
     ALSnakeDirectionLeft,
     ALSnakeDirectionUp,
@@ -16,7 +17,6 @@ typedef enum{
     ALSnakeDirectionDown
 }ALSnakeDirection;
 
-@class ALSnakeWorld;
 
 @interface ALSnake : NSObject
 
@@ -30,7 +30,7 @@ typedef enum{
 
 
 #pragma Move
--(ALSnake *)initWithWorld:(ALSnakeWorld *)world length:(NSUInteger)length;
+-(ALSnake *)initWithWorldSize:(ALSnakeWorldSize)worldSize length:(NSUInteger)length;
 
 /* Move a dot */
 //-(void)move:(ALSnakeDirection)direction;

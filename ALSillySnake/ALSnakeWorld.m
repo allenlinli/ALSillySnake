@@ -16,30 +16,8 @@ ALSnakeWorldSize ALSnakeWorldSizeMake(NSUInteger width, NSUInteger height){
     return worldSize;
 }
 
-ALSnakeWorldPoint ALSnakeWorldPointMake(NSUInteger x, NSUInteger y){
-    ALSnakeWorldPoint point;
-    point.x = x;
-    point.y = y;
-    return point;
-}
 
-@implementation NSValue (ALSnakeWorldPoint)
 
-+ (id)valueWithSnakeWorldPoint:(ALSnakeWorldPoint)point
-{
-	return	[NSValue valueWithBytes:&point objCType:@encode(ALSnakeWorldPoint)];
-}
-
-- (ALSnakeWorldPoint)snakeWorldPointWithValue{
-    if (strcmp([self objCType], @encode(ALSnakeWorldPoint)) != 0) {
-        return ALSnakeWorldPointMake(0, 0);
-    }
-    
-    ALSnakeWorldPoint point;
-    [self getValue:&point];
-    return point;
-}
-@end
 
 @implementation ALSnakeWorld
 

@@ -64,7 +64,7 @@ static
     self.snakeView.delegate = self.snake;
     
     self.world = [[ALSnakeWorld alloc] initWithSize:ALSnakeWorldSizeMake(40, 40)];
-    self.snake = [[ALSnake alloc] initWithWorld:self.world length:3];
+    self.snake = [[ALSnake alloc] initWithWorldSize:self.world.size length:3];
 
 }
 

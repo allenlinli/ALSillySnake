@@ -10,10 +10,7 @@
 #import "ALSnakeViewProtocol.h"
 #import "ALSnakeStrucs.h"
 
-@interface NSValue (ALSnakeWorldPoint)
-+ (id)valueWithSnakeWorldPoint:(ALSnakeWorldPoint)point;
-- (ALSnakeWorldPoint)snakeWorldPointWithValue;
-@end
+
 
 
 @interface ALSnakeWorld : NSObject

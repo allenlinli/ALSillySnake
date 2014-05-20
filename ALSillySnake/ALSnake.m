@@ -7,16 +7,14 @@
 //
 
 #import "ALSnake.h"
-
+#import "NSValue+ALSnakeValue.h"
 
 
 @implementation ALSnake
 
 
--(ALSnake *)initWithWorld:(ALSnakeWorld *)world length:(NSUInteger)length{
-//    self.world = world;
-    
-//    ALSnakeWorldSize worldSize = world.size;
+-(ALSnake *)initWithWorldSize:(ALSnakeWorldSize)worldSize length:(NSUInteger)length{
+
     
     if (length<=0) {
         return nil;
