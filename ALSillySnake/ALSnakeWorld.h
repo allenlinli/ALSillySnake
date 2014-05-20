@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "ALSnakeViewProtocol.h"
-#import "ALSnakeStrucs.h"
+#import "ALSnakeStructs.h"
 
 @class ALSnake;
 

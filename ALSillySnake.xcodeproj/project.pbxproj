@@ -28,6 +28,8 @@
 		E31AB70B1929BB1F00FC4859 /* ALSnakeViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E31AB70A1929BB1F00FC4859 /* ALSnakeViewControllerTest.m */; };
 		E31AB70E1929F64D00FC4859 /* ALSnakeView.m in Sources */ = {isa = PBXBuildFile; fileRef = E31AB70D1929F64D00FC4859 /* ALSnakeView.m */; };
 		E31AB710192A02DB00FC4859 /* ALSnakeViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E31AB70F192A02DB00FC4859 /* ALSnakeViewTest.m */; };
+		E3719DC5192B29BB00DD16F7 /* ALSnakeStructs.m in Sources */ = {isa = PBXBuildFile; fileRef = E3719DC3192B288300DD16F7 /* ALSnakeStructs.m */; };
+		E3719DC6192B29BD00DD16F7 /* ALSnakeStructs.m in Sources */ = {isa = PBXBuildFile; fileRef = E3719DC3192B288300DD16F7 /* ALSnakeStructs.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +44,7 @@
 
 /* Begin PBXFileReference section */
 		E31431C0192A19E400F8C8D7 /* ALSnakeViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALSnakeViewProtocol.h; sourceTree = "<group>"; };
-		E31431C1192A1B5C00F8C8D7 /* ALSnakeStrucs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALSnakeStrucs.h; sourceTree = "<group>"; };
+		E31431C1192A1B5C00F8C8D7 /* ALSnakeStructs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALSnakeStructs.h; sourceTree = "<group>"; };
 		E31431C3192AF3B000F8C8D7 /* NSValue+ALSnakeValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSValue+ALSnakeValue.h"; sourceTree = "<group>"; };
 		E31431C4192AF3B000F8C8D7 /* NSValue+ALSnakeValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSValue+ALSnakeValue.m"; sourceTree = "<group>"; };
 		E31AB6C21929B08000FC4859 /* ALSillySnake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ALSillySnake.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,6 +75,7 @@
 		E31AB70C1929F64D00FC4859 /* ALSnakeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALSnakeView.h; sourceTree = "<group>"; };
 		E31AB70D1929F64D00FC4859 /* ALSnakeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALSnakeView.m; sourceTree = "<group>"; };
 		E31AB70F192A02DB00FC4859 /* ALSnakeViewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALSnakeViewTest.m; sourceTree = "<group>"; };
+		E3719DC3192B288300DD16F7 /* ALSnakeStructs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALSnakeStructs.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,7 +122,8 @@
 		E31431C9192AF69000F8C8D7 /* Structure */ = {
 			isa = PBXGroup;
 			children = (
-				E31431C1192A1B5C00F8C8D7 /* ALSnakeStrucs.h */,
+				E31431C1192A1B5C00F8C8D7 /* ALSnakeStructs.h */,
+				E3719DC3192B288300DD16F7 /* ALSnakeStructs.m */,
 			);
 			name = Structure;
 			sourceTree = "<group>";
@@ -332,6 +336,7 @@
 			files = (
 				E31AB70E1929F64D00FC4859 /* ALSnakeView.m in Sources */,
 				E31AB7051929B66300FC4859 /* ALSnakeViewController.m in Sources */,
+				E3719DC5192B29BB00DD16F7 /* ALSnakeStructs.m in Sources */,
 				E31431C5192AF3B000F8C8D7 /* NSValue+ALSnakeValue.m in Sources */,
 				E31AB7021929B1B800FC4859 /* ALSnakeWorld.m in Sources */,
 				E31AB6D61929B08000FC4859 /* AppDelegate.m in Sources */,
@@ -348,6 +353,7 @@
 				E31AB7071929BAFC00FC4859 /* ALSnakeTest.m in Sources */,
 				E31AB710192A02DB00FC4859 /* ALSnakeViewTest.m in Sources */,
 				E31AB70B1929BB1F00FC4859 /* ALSnakeViewControllerTest.m in Sources */,
+				E3719DC6192B29BD00DD16F7 /* ALSnakeStructs.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
