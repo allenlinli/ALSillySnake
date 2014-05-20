@@ -94,9 +94,7 @@
 }
 
 -(ALSnakeWorld *)snakeWorldForSnakeView:(ALSnakeView *)view{
-    return nil;
-    
-    //uncomplete
+    return self.world;
 }
 
 @end

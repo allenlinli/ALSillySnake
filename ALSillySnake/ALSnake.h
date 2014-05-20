@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "ALSnakeStructs.h"
+#import "NSValue+ALSnakeValue.h"
 
 /*
  蛇知道他的世界：
@@ -40,7 +41,7 @@ typedef enum{
 
 @property (assign, nonatomic) ALSnakeDirection direction;
 
-@property (readonly, nonatomic) ALSnakeWorld *world;
+@property (readonly, weak, nonatomic) ALSnakeWorld *world;
 
 #pragma Move
 /* if yes, the snake is dead. */

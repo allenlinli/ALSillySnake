@@ -7,9 +7,10 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "ALSnakeViewController.h"
 
 @interface ALSnakeViewControllerTest : XCTestCase
-
+@property (strong, nonatomic) ALSnakeViewController *controller;
 @end
 
 @implementation ALSnakeViewControllerTest
@@ -17,18 +18,22 @@
 - (void)setUp
 {
     [super setUp];
+    
+    self.controller = [[ALSnakeViewController alloc] init];
+    
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
 - (void)tearDown
 {
+    self.controller = nil;
     // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
 }
 
-//- (void)testExample
+//- (void)testStartGame
 //{
-//    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+//    [self.controller startGame];
 //}
 
 @end

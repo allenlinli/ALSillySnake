@@ -8,7 +8,7 @@
 
 #import "ALSnakeWorld.h"
 #import "ALSnake.h"
-#import "NSValue+ALSnakeValue.h"
+
 
 
 @implementation ALSnake
@@ -36,8 +36,9 @@
             [self.points addObject:obj];
         }
         self.direction = ALSnakeDirectionLeft;
+        
+        _world.snake = self;
     }
-    
     
     return self;
 }

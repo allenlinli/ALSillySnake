@@ -13,7 +13,7 @@
 @class ALSnake;
 
 /*
- 世界擁有蛇：
+ 世界擁有蛇
 
  世界負責產生水果
  
@@ -21,10 +21,10 @@
  */
 @interface ALSnakeWorld : NSObject 
 
-#pragma Region
+#pragma Region  //邊界大小
 @property (assign, nonatomic) ALSnakeWorldSize size;
 
-#pragma Snake
+#pragma Snake //擁有一隻蛇
 @property (strong, nonatomic) ALSnake *snake;
 
 #pragma Init
