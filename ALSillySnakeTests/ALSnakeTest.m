@@ -46,7 +46,7 @@
 {
     ALSnake *snake = self.snake;
     
-    for (NSUInteger i = 0; i<self.snake.bodyLength; i++) {
+    for (NSUInteger i = 0; i<self.snake.bodyPoints.count; i++) {
         NSValue *value = snake.bodyPoints[i];
         XCTAssertNotNil(value, @"snake.body[i] is nil");
         ALSnakeWorldPoint body = [snake.bodyPoints[i] snakeWorldPointWithValue];

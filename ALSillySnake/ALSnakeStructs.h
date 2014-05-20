@@ -6,6 +6,12 @@
 //  Copyright (c) 2014 KKBOX. All rights reserved.
 //
 
+/* 
+ 世界的空間分佈是 
+ x: 0 ~ (width-1)
+ y: 0 ~ (height-1)
+ */
+
 typedef struct {
     NSUInteger width;
 	NSUInteger height;
