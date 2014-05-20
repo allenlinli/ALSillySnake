@@ -10,8 +10,6 @@
 #import "ALSnake.h"
 #import "ALSnakeWorld.h"
 
-static
-
 @interface ALSnakeViewController ()
 
 #pragma UI
@@ -42,7 +40,6 @@ static
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 
 
@@ -60,31 +57,23 @@ static
 }
 
 -(void)startGame{
-//    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(timerMethod:) userInfo:nil repeats:YES];
-    self.snakeView.delegate = self.world;
     
+    //Pre-setup
+    self.snake = nil;
+    self.world = nil;
+    self.snakeView.delegate = self;
+    
+    //Init
     self.world = [[ALSnakeWorld alloc] initWithSize:ALSnakeWorldSizeMake(40, 40)];
     self.snake = [[ALSnake alloc] initWithWorld:self.world length:3];
-
+    
+    //uncomplete
 }
-
-//-(void)runOneRound{
-//    self.timeLabel.text = [NSString stringWithFormat:@"time: %i",self.seconds];
-//}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 -(ALSnakeWorld *)snakeWorldForSnakeView:(ALSnakeView *)view{
     return nil;
+    
+    //uncomplete
 }
 
 @end

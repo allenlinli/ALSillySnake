@@ -20,7 +20,6 @@ typedef struct{
 	NSUInteger y;
 }ALSnakeWorldPoint;
 ALSnakeWorldPoint ALSnakeWorldPointMake(NSUInteger x, NSUInteger y);
-@class ALSnakeWorld;
 
 
 ALSnakeWorldSize ALSnakeWorldSizeMake(NSUInteger width, NSUInteger height){

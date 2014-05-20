@@ -7,7 +7,7 @@
 //
 
 #import "ALSnakeWorld.h"
-
+#import "ALSnake.h"
 
 @implementation ALSnakeWorld
 
@@ -22,11 +22,6 @@
         self.size = size;
     }
     
-    return self;
-}
-
-#pragma - protocol
--(ALSnakeWorld *)snakeWorldForSnakeView:(ALSnakeView *)view{
     return self;
 }
 

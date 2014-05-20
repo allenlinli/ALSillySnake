@@ -8,6 +8,8 @@
 
 #import "ALSnakeView.h"
 
+#import "ALSnakeWorld.h"
+#import "ALSnake.h"
 
 @implementation ALSnakeView
 

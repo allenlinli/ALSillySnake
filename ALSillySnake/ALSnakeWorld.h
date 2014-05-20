@@ -10,22 +10,28 @@
 #import "ALSnakeViewProtocol.h"
 #import "ALSnakeStrucs.h"
 
+@class ALSnake;
 
+/*
+ 世界擁有蛇：
 
-
+ 世界負責產生水果
+ 
+ 
+ */
 @interface ALSnakeWorld : NSObject 
 
 #pragma Region
 @property (assign, nonatomic) ALSnakeWorldSize size;
 
 #pragma Snake
-//@property (strong, nonatomic) ALSnakeWorldSize size;
+@property (strong, nonatomic) ALSnake *snake;
 
 #pragma Init
 -(ALSnakeWorld *)initWithSize:(ALSnakeWorldSize)size;
 
 #pragma Fruit Generator
-//-(ALSnakeWorldPoint) fruitWolrdPointWithSnakeWorldPointX:(NSUInteger)x y:(NSUInteger)y;
+-(ALSnakeWorldPoint)fruitWolrdPointWithSnakeWorldPointX:(NSUInteger)x y:(NSUInteger)y;
 
 
 

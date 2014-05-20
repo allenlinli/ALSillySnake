@@ -7,13 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ALSnakeWorld.h"
-#import "ALSnake.h"
+#import "ALSnakeStrucs.h"
 #import "ALSnakeViewProtocol.h"
-
-@class ALSnake;
-@class ALSnakeView;
-
 
 
 @interface ALSnakeView : UIView

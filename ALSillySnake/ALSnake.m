@@ -13,7 +13,9 @@
 @implementation ALSnake
 
 -(ALSnake *)initWithWorld:(ALSnakeWorld *)world length:(NSUInteger)length{
-    ALSnakeWorldSize worldSize = world.size;
+    _world = world;
+    
+    ALSnakeWorldSize worldSize = self.world.size;
     
     if (length<=0) {
         return nil;
