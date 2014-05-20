@@ -47,6 +47,21 @@
     return self.points.count;
 }
 
+-(void)setDirection:(ALSnakeDirection)direction{
+    
+    //分"上下"或"左右" 兩種情況
+    if (self.direction == ALSnakeDirectionLeft || self.direction == ALSnakeDirectionRight) {
+        if (direction == ALSnakeDirectionUp || direction == ALSnakeDirectionDown) {
+            _direction = direction;
+        }
+    }
+    else{
+        if (direction == ALSnakeDirectionLeft || direction == ALSnakeDirectionRight) {
+            _direction = direction;
+        }
+    }
+}
+
 -(void)move{
     
 }

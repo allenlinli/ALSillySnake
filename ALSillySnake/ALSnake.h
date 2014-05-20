@@ -45,7 +45,7 @@ typedef enum{
 
 #pragma Move
 /* if yes, the snake is dead. */
-@property (readonly, nonatomic) BOOL isHeadHitBody;
+@property (readonly, nonatomic) BOOL isDead;
 
 /* */
 -(ALSnake *)initWithWorld:(ALSnakeWorld *)world length:(NSUInteger)length;

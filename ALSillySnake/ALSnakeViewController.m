@@ -79,7 +79,7 @@
         return;
     }
     
-    if (self.snake.isHeadHitBody) {
+    if (self.snake.isDead) {
         [self endGame];
         return;
     }
