@@ -17,6 +17,7 @@ typedef enum{
     ALSnakeDirectionDown
 }ALSnakeDirection;
 
+@class ALSnakeWorld;
 
 @interface ALSnake : NSObject
 
@@ -25,12 +26,11 @@ typedef enum{
 
 #pragma Status
 @property (strong, nonatomic) NSMutableArray *points;
-@property (readonly, nonatomic) NSUInteger bodyLength;
 @property (assign, nonatomic) ALSnakeDirection direction;
-
+@property (readonly, nonatomic) NSUInteger bodyLength;
 
 #pragma Move
--(ALSnake *)initWithWorldSize:(ALSnakeWorldSize)worldSize length:(NSUInteger)length;
+-(ALSnake *)initWithWorld:(ALSnakeWorld *)world length:(NSUInteger)length;
 
 /* Move a dot */
 //-(void)move:(ALSnakeDirection)direction;

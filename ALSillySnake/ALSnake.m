@@ -8,13 +8,12 @@
 
 #import "ALSnake.h"
 #import "NSValue+ALSnakeValue.h"
-
+#import "ALSnakeWorld.h"
 
 @implementation ALSnake
 
-
--(ALSnake *)initWithWorldSize:(ALSnakeWorldSize)worldSize length:(NSUInteger)length{
-
+-(ALSnake *)initWithWorld:(ALSnakeWorld *)world length:(NSUInteger)length{
+    ALSnakeWorldSize worldSize = world.size;
     
     if (length<=0) {
         return nil;
@@ -40,7 +39,8 @@
     return self;
 }
 
--(NSUInteger) bodyLength{
+-(NSUInteger)bodyLength{
     return self.points.count;
 }
+
 @end

@@ -27,15 +27,14 @@
         return;
     }
     
-    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CGContextRef contextRef = UIGraphicsGetCurrentContext();
     /*
      w * x = 螢幕上的x位置
      w * y = 螢幕上的y位置
      */
-    CGFloat w = self.bounds.size.width/snakeWorld.size.width;
-    CGFloat h = self.bounds.size.height/snakeWorld.size.height;
+    CGFloat widthScale = self.bounds.size.width/snakeWorld.size.width;
+    CGFloat heightScale = self.bounds.size.height/snakeWorld.size.height;
 
-    
 //    if (snake) {
 //        [[UIColor blackColor] set];
 //        for (NSValue *value in snake.points) {

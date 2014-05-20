@@ -11,7 +11,7 @@
 
 
 
-@interface ALSnakeViewController : UIViewController 
+@interface ALSnakeViewController : UIViewController <ALSnakeViewProtocol>
 
 #pragma Game State
 -(void)startGame;
@@ -22,5 +22,7 @@
 #pragma Timer
 -(void)runOneRound;
 
+#pragma protocol
+-(ALSnakeWorld *)snakeWorldForSnakeView:(ALSnakeView *)view;
 
 @end

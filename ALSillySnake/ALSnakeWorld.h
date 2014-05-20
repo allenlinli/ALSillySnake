@@ -13,17 +13,22 @@
 
 
 
-@interface ALSnakeWorld : NSObject
+@interface ALSnakeWorld : NSObject 
 
 #pragma Region
-@property (assign, nonatomic) BOOL isWallBounded;
 @property (assign, nonatomic) ALSnakeWorldSize size;
+
+#pragma Snake
+//@property (strong, nonatomic) ALSnakeWorldSize size;
 
 #pragma Init
 -(ALSnakeWorld *)initWithSize:(ALSnakeWorldSize)size;
 
 #pragma Fruit Generator
 //-(ALSnakeWorldPoint) fruitWolrdPointWithSnakeWorldPointX:(NSUInteger)x y:(NSUInteger)y;
+
+
+
 
 @end
 

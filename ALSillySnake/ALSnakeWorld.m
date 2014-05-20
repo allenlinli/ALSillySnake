@@ -25,4 +25,9 @@
     return self;
 }
 
+#pragma - protocol
+-(ALSnakeWorld *)snakeWorldForSnakeView:(ALSnakeView *)view{
+    return self;
+}
+
 @end

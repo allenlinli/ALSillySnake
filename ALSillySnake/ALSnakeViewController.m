@@ -61,10 +61,10 @@ static
 
 -(void)startGame{
 //    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(timerMethod:) userInfo:nil repeats:YES];
-    self.snakeView.delegate = self.snake;
+    self.snakeView.delegate = self.world;
     
     self.world = [[ALSnakeWorld alloc] initWithSize:ALSnakeWorldSizeMake(40, 40)];
-    self.snake = [[ALSnake alloc] initWithWorldSize:self.world.size length:3];
+    self.snake = [[ALSnake alloc] initWithWorld:self.world length:3];
 
 }
 
@@ -82,5 +82,9 @@ static
     // Pass the selected object to the new view controller.
 }
 */
+
+-(ALSnakeWorld *)snakeWorldForSnakeView:(ALSnakeView *)view{
+    return nil;
+}
 
 @end
