@@ -29,7 +29,6 @@
 		E31AB70E1929F64D00FC4859 /* ALSnakeView.m in Sources */ = {isa = PBXBuildFile; fileRef = E31AB70D1929F64D00FC4859 /* ALSnakeView.m */; };
 		E31AB710192A02DB00FC4859 /* ALSnakeViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E31AB70F192A02DB00FC4859 /* ALSnakeViewTest.m */; };
 		E3719DC5192B29BB00DD16F7 /* ALSnakeStructs.m in Sources */ = {isa = PBXBuildFile; fileRef = E3719DC3192B288300DD16F7 /* ALSnakeStructs.m */; };
-		E3719DC6192B29BD00DD16F7 /* ALSnakeStructs.m in Sources */ = {isa = PBXBuildFile; fileRef = E3719DC3192B288300DD16F7 /* ALSnakeStructs.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -353,7 +352,6 @@
 				E31AB7071929BAFC00FC4859 /* ALSnakeTest.m in Sources */,
 				E31AB710192A02DB00FC4859 /* ALSnakeViewTest.m in Sources */,
 				E31AB70B1929BB1F00FC4859 /* ALSnakeViewControllerTest.m in Sources */,
-				E3719DC6192B29BD00DD16F7 /* ALSnakeStructs.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

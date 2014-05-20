@@ -9,6 +9,7 @@
 #import "ALSnakeViewController.h"
 #import "ALSnake.h"
 #import "ALSnakeWorld.h"
+#import "NSValue+ALSnakeValue.h"
 
 @interface ALSnakeViewController ()
 
@@ -85,7 +86,8 @@
     
     [self.snake move];
     
-    ALSnakeWorldPoint head = self.snake
+    NSValue *value = self.snake.points[0];
+    ALSnakeWorldPoint head = [value snakeWorldPointWithValue];
     
     
     [self.snakeView setNeedsDisplay];

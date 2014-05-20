@@ -10,6 +10,7 @@
 #import "ALSnakeWorld.h"
 #import "ALSnakeStructs.h"
 
+
 @interface NSValue (ALSnakeWorldPoint)
 + (id)valueWithSnakeWorldPoint:(ALSnakeWorldPoint)point;
 - (ALSnakeWorldPoint)snakeWorldPointWithValue;
