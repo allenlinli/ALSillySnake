@@ -81,50 +81,28 @@
     NSUInteger headY = self.headPoint.y;
     
     //先計算出Offset
-    NSInteger headingXOffset;
-    NSInteger headingYOffset;
+    NSInteger xOffset;
+    NSInteger yOffset;
     
     switch (self.direction) {
         case ALSnakeDirectionLeft:
-            headingXOffset = -1;
+            xOffset = -1;
             break;
         case ALSnakeDirectionUp:
-            headingYOffset = 1;
+            yOffset = 1;
             break;
         case ALSnakeDirectionRight:
-            headingXOffset = 1;
+            xOffset = 1;
             break;
         case ALSnakeDirectionDown:
-            headingYOffset = -1;
+            yOffset = -1;
             break;
         default:
             break;
     }
     
-    
-    //假如點已經在邊界了，而且接下來會出界的話，就穿牆
-    if (headX == 0 && headingXOffset == -1) {
-        headX = worldWidth - 1;
-    }
-    else if(headX == worldWidth-1 && headingXOffset == 1){
-        headX = 0;
-    }
-    else if(headY == 0 && headingYOffset == -1){
-        headY = worldHeight - 1;
-    }
-    else if(headY == worldHeight -1 && headingYOffset == 1){
-        headY = 0;
-    }
-    //假如點在正常範圍的話
-    else if(headX > 0 && headX < worldWidth -1 && headY > 0 && headY < worldHeight -1){
-        headingX = headX + headingXOffset;
-        headingY = headY + headingYOffset;
-    }
-    //有錯誤
-    else{
-        //Error
-        NSLog(@"Error");
-    }
+    headingX = ((NSInteger)headX + xOffset) % worldWidth;
+    headingY = ((NSInteger)headY + yOffset) % worldHeight;
     
     headingPoint.x = headingX;
     headingPoint.y = headingY;
