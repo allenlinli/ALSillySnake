@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ALSnakeStrucs.h"
+#import "ALSnakeStructs.h"
 #import "ALSnakeViewProtocol.h"
-
 
 @interface ALSnakeView : UIView
 @property (assign, nonatomic) ALSnakeWorldSize worldSize;

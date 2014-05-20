@@ -8,9 +8,6 @@
 
 #import "NSValue+ALSnakeValue.h"
 
-
-
-
 @implementation NSValue (ALSnakeWorldPoint)
 
 + (id)valueWithSnakeWorldPoint:(ALSnakeWorldPoint)point

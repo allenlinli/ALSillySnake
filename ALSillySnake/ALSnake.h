@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ALSnakeStrucs.h"
+#import "ALSnakeStructs.h"
 
 /*
  蛇知道他的世界：
