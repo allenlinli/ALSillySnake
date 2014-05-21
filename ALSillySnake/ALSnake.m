@@ -9,32 +9,31 @@
 #import "ALSnakeWorld.h"
 #import "ALSnake.h"
 
-const NSInteger DefaultLengthOfSnakeInit = 10;
+const NSInteger InitialSnakeLength = 10;
 
 @implementation ALSnake
 
 #pragma initialization
 
--(ALSnake *)initWithWorld:(ALSnakeWorld *)world{
-    return [self initWithWorld:world length:DefaultLengthOfSnakeInit];
+-(ALSnake *)initWithWorld:(ALSnakeWorld *)world
+{
+    return [self initWithWorld:world length:InitialSnakeLength];
 }
 
--(ALSnake *)initWithWorld:(ALSnakeWorld *)world length:(NSUInteger)length{
-    _world = world;
-    
-    ALSnakeWorldSize worldSize = self.world.size;
-    
-    if (length<=0) {
+-(ALSnake *)initWithWorld:(ALSnakeWorld *)world length:(NSUInteger)length
+{
+    ALSnakeWorldSize worldSize = world.size;
+    if (length <= 0) {
         return nil;
     }
     else if (worldSize.width <= 5 || worldSize.height <=5){
         return nil;
     }
-
-    /* 本文 */
+    
     self = [super init];
     if (self) {
-        self.bodyPoints = [[NSMutableArray alloc]init];
+        _world = world;
+        self.bodyPoints = [[NSMutableArray alloc] init];
         NSUInteger x = (NSUInteger) worldSize.width / 2.0;
         NSUInteger y = (NSUInteger) worldSize.height / 2.0;
         for (NSUInteger i = 0; i<length; i++) {
@@ -42,15 +41,9 @@ const NSInteger DefaultLengthOfSnakeInit = 10;
             [self.bodyPoints addObject:obj];
         }
         self.direction = ALSnakeDirectionLeft;
-        
-        _world.snake = self;
     }
     
     return self;
-}
-
--(UIColor *)color{
-    return [UIColor blackColor];
 }
 
 -(void)setDirection:(ALSnakeDirection)direction{
@@ -68,13 +61,8 @@ const NSInteger DefaultLengthOfSnakeInit = 10;
     }
 }
 
--(ALSnakeWorldPoint)headPoint{
-    NSValue *value = [self.bodyPoints firstObject];
-    return [value worldPointWithValue];
-}
-
-
--(ALSnakeWorldPoint)headingPoint{
+-(ALSnakeWorldPoint)headingPoint
+{
     /*
      功能：
      1. 前進一格
@@ -87,61 +75,47 @@ const NSInteger DefaultLengthOfSnakeInit = 10;
      */
     
     //結果的值
-    ALSnakeWorldPoint headingPoint;
-    
-    //工具的值
-    NSUInteger worldWidth = self.world.size.width;
-    NSUInteger worldHeight = self.world.size.height;
-    
-    NSUInteger headX = self.headPoint.x;
-    NSUInteger headY = self.headPoint.y;
-    
-    //先計算出Offset
-    NSInteger xOffset = 0;
-    NSInteger yOffset = 0;
+    ALSnakeWorldPoint currentHeadLocation = [[self.bodyPoints firstObject] worldPointWithValue];
+    ALSnakeWorldPoint nextLocation = currentHeadLocation;
     
     switch (self.direction) {
         case ALSnakeDirectionLeft:
-            xOffset = -1;
+            nextLocation.x += -1;
             break;
         case ALSnakeDirectionRight:
-            xOffset = 1;
+            nextLocation.x += 1;
             break;
         case ALSnakeDirectionUp:
-            yOffset = -1;
+            nextLocation.y += -1;
             break;
         case ALSnakeDirectionDown:
-            yOffset = 1;
+            nextLocation.y += 1;
             break;
         default:
             break;
     }
     
-    NSInteger x = headX + xOffset;
-    NSInteger y = headY + yOffset;
-    
-    while (x<0) {
-        x += worldWidth;
+    //工具的值
+    NSUInteger worldWidth = self.world.size.width;
+    NSUInteger worldHeight = self.world.size.height;
+
+    if (nextLocation.x < 0) {
+        nextLocation.x += worldWidth;
     }
-    while (y<0) {
-        y += worldHeight;
+    else if (nextLocation.x >= worldWidth) {
+        nextLocation.x = nextLocation.x % worldWidth;
     }
     
-    NSUInteger headingX = x % worldWidth;
-    NSUInteger headingY = y % worldHeight;
-    
-    headingPoint.x = headingX;
-    headingPoint.y = headingY;
-    
-    return headingPoint;
+    if (nextLocation.y < 0) {
+        nextLocation.y += worldHeight;
+    }
+    else if (nextLocation.y >= worldHeight) {
+        nextLocation.y = nextLocation.y % worldHeight;
+    }
+    return nextLocation;
 }
 
--(ALSnakeWorldPoint)tailPoint{
-    NSValue *value = [self.bodyPoints lastObject];
-    return [value worldPointWithValue];
-}
-
--(void)move{
+-(void)move {
     /*
      功能：前進、吃水果、撞牆死掉
      */
@@ -158,8 +132,6 @@ const NSInteger DefaultLengthOfSnakeInit = 10;
         NSLog(@"[Error]");
         return;
     }
-    
-    NSLog(@"headPpoint.x :%i , %i",headPoint.x,headPoint.y);
 
     NSMutableArray *bodyWithoutTail = [self.bodyPoints mutableCopy];
     [bodyWithoutTail removeLastObject];

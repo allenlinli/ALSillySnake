@@ -11,7 +11,7 @@
 #import "ALSnakeWorld.h"
 #import "NSValue+ALSnakeValue.h"
 
-const NSInteger GameSpeed = 7;
+static NSTimeInterval const timerInterval = 0.5;
 
 @interface ALSnakeViewController ()
 
@@ -19,121 +19,76 @@ const NSInteger GameSpeed = 7;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *startButton;
 @property (weak, nonatomic) IBOutlet UILabel *gameSateLabel;
+@property (weak, nonatomic) IBOutlet ALSnakeView *snakeView;
 
 #pragma Objects
 @property (strong, nonatomic) ALSnakeWorld *world;
-@property (strong, nonatomic) ALSnake *snake;
-@property (weak, nonatomic) IBOutlet ALSnakeView *snakeView;
 
 #pragma Time
 @property (strong, nonatomic) NSTimer* timer;
-@property (assign, nonatomic) NSUInteger seconds;
 @end
 
 @implementation ALSnakeViewController
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
--(void)addGestureRecognizerWithFourDerictions{
-    UISwipeGestureRecognizer *gestureRecognizer0 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe:)];
-	gestureRecognizer0.direction = UISwipeGestureRecognizerDirectionRight;
-	[self.snakeView addGestureRecognizer:gestureRecognizer0];
-    
-    UISwipeGestureRecognizer *gestureRecognizer1 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe:)];
-	gestureRecognizer1.direction = UISwipeGestureRecognizerDirectionLeft;
-	[self.snakeView addGestureRecognizer:gestureRecognizer1];
-    
-    UISwipeGestureRecognizer *gestureRecognizer2 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe:)];
-	gestureRecognizer2.direction = UISwipeGestureRecognizerDirectionUp;
-	[self.snakeView addGestureRecognizer:gestureRecognizer2];
-    
-    UISwipeGestureRecognizer *gestureRecognizer3 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe:)];
-	gestureRecognizer3.direction = UISwipeGestureRecognizerDirectionDown;
-	[self.snakeView addGestureRecognizer:gestureRecognizer3];
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    self.snakeView.delegate = self;
     self.gameSateLabel.text = @"貪食蛇";
     self.gameSateLabel.hidden = NO;
     
-    //加上手勢滑動
-    [self addGestureRecognizerWithFourDerictions];
-}
-
--(void)swipe:(UISwipeGestureRecognizer *)gestureRecognizer{
-    switch (gestureRecognizer.direction) {
-        case UISwipeGestureRecognizerDirectionRight:
-            self.snake.direction = ALSnakeDirectionRight;
-            break;
-        case UISwipeGestureRecognizerDirectionLeft:
-            self.snake.direction = ALSnakeDirectionLeft;
-            break;
-        case UISwipeGestureRecognizerDirectionUp:
-            self.snake.direction = ALSnakeDirectionUp;
-            break;
-        case UISwipeGestureRecognizerDirectionDown:
-            self.snake.direction = ALSnakeDirectionDown;
-            break;
-        default:
-            break;
+    for (NSNumber *v in @[@(UISwipeGestureRecognizerDirectionRight),
+                          @(UISwipeGestureRecognizerDirectionLeft),
+                          @(UISwipeGestureRecognizerDirectionUp),
+                          @(UISwipeGestureRecognizerDirectionDown)]) {
+        UISwipeGestureRecognizer *gestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe:)];
+        gestureRecognizer.direction = [v unsignedIntegerValue];
+        [self.snakeView addGestureRecognizer:gestureRecognizer];
     }
 }
 
-- (void)didReceiveMemoryWarning
+-(void)swipe:(UISwipeGestureRecognizer *)gestureRecognizer
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    NSDictionary *map = @{@(UISwipeGestureRecognizerDirectionRight): @(ALSnakeDirectionRight),
+                          @(UISwipeGestureRecognizerDirectionLeft): @(ALSnakeDirectionLeft),
+                          @(UISwipeGestureRecognizerDirectionUp): @(ALSnakeDirectionUp),
+                          @(UISwipeGestureRecognizerDirectionDown): @(ALSnakeDirectionDown)};
+    self.world.snake.direction = [map[@(gestureRecognizer.direction)] integerValue];
 }
 
-
-
-- (IBAction)startButtonPressed:(id)sender {
+- (IBAction)startButtonPressed:(id)sender
+{
     self.startButton.hidden = YES;
     [self startGame];
 }
 
--(void)startGame{
+-(void)startGame
+{
     self.gameSateLabel.hidden = YES;
     
-    self.snakeView.layer.opacity = 1;
-    
-    //Pre-setup
-    self.snake = nil;
-    self.world = nil;
-    self.snakeView.delegate = self;
+    self.snakeView.alpha = 1;
     
     //Init
     self.world = [[ALSnakeWorld alloc] initWithSize:ALSnakeWorldSizeMake(ALSnakeWorldSizeWidth, ALSnakeWorldSizeHeight)];
-    self.snake = [[ALSnake alloc] initWithWorld:self.world];
     
     [self.world makeFruit];
     
     //Run
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0/GameSpeed target:self selector:@selector(runOneRound) userInfo:nil repeats:YES];
-    
-    
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:timerInterval target:self selector:@selector(runOneRound:) userInfo:nil repeats:YES];
 }
 
--(void)runOneRound{
-    if (!self.snake || !self.world) {
+-(void)runOneRound:(NSTimer *)timer
+{
+    if (!self.world) {
         //Error
         return;
     }
     
     
-    [self.snake move];
+    [self.world.snake move];
     
-    if (self.snake.isDead) {
+    if (self.world.snake.isDead) {
         [self endGame];
         return;
     }
@@ -141,20 +96,26 @@ const NSInteger GameSpeed = 7;
     [self.snakeView setNeedsDisplay];
 }
 
--(void)endGame{
+-(void)endGame
+{
     [self.timer invalidate];
     self.timer = nil;
     
     self.gameSateLabel.text = @"GAME OVER";
     self.gameSateLabel.hidden = NO;
-    
     self.startButton.hidden = NO;
-    
-    self.snakeView.layer.opacity = 0.1;
+    self.snakeView.alpha = 0.1;
+}
+
+-(void)pauseGame
+{
     
 }
 
--(ALSnakeWorld *)snakeWorldForSnakeView:(ALSnakeView *)view{
+#pragma mark -
+
+-(ALSnakeWorld *)snakeWorldForSnakeView:(ALSnakeView *)view
+{
     return self.world;
 }
 

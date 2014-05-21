@@ -18,26 +18,8 @@
  
  */
 
-extern const NSInteger GameSpeed;
-
-typedef enum : NSUInteger {
-    ALSnakeWorldGameStateEnd,
-    ALSnakeWorldGameStateRunning,
-    ALSnakeWorldGameStatePause,
-} ALSnakeWorldGameState;
-
 @interface ALSnakeViewController : UIViewController <ALSnakeViewProtocol>
-
-#pragma Game State
-@property (assign, readonly, nonatomic) ALSnakeWorldGameState gameState;
 -(void)startGame;
 -(void)pauseGame;
 -(void)endGame;
-
-#pragma Timer
--(void)runOneRound;
-
-#pragma protocol
--(ALSnakeWorld *)snakeWorldForSnakeView:(ALSnakeView *)view;
-
 @end

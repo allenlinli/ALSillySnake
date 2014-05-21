@@ -22,14 +22,14 @@
  
  */
 
-extern const NSInteger DefaultLengthOfSnakeInit;
+extern const NSInteger InitialSnakeLength;
 
 typedef enum{
     ALSnakeDirectionLeft,
     ALSnakeDirectionUp,
     ALSnakeDirectionRight,
     ALSnakeDirectionDown
-}ALSnakeDirection;
+} ALSnakeDirection;
 
 
 @class ALSnakeWorld;
@@ -44,8 +44,6 @@ typedef enum{
 
 @property (readonly, weak, nonatomic) ALSnakeWorld *world;
 
-@property (strong, nonatomic) UIColor *color;
-
 #pragma Move
 /* if yes, the snake is dead. */
 @property (readonly, nonatomic) BOOL isDead;
@@ -59,5 +57,5 @@ typedef enum{
 
 
 /* increase length by eat fruit */
--(void)increaseLength;
+//-(void)increaseLength;
 @end

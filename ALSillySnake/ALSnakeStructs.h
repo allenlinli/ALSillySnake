@@ -13,15 +13,15 @@
  */
 
 typedef struct {
-    NSUInteger width;
-	NSUInteger height;
+    NSInteger width;
+	NSInteger height;
 } ALSnakeWorldSize;
 
 ALSnakeWorldSize ALSnakeWorldSizeMake(NSUInteger width, NSUInteger height);
 
 typedef struct {
-    NSUInteger x;
-	NSUInteger y;
+    NSInteger x;
+	NSInteger y;
 } ALSnakeWorldPoint;
 
 ALSnakeWorldPoint ALSnakeWorldPointMake(NSUInteger x, NSUInteger y);

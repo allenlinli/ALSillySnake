@@ -11,6 +11,5 @@
 #import "ALSnakeViewProtocol.h"
 
 @interface ALSnakeView : UIView
-@property (assign, nonatomic) ALSnakeWorldSize worldSize;
 @property (weak, nonatomic) id <ALSnakeViewProtocol> delegate;
 @end
