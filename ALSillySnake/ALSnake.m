@@ -145,25 +145,21 @@ const NSInteger DefaultLengthOfSnakeInit = 10;
     /*
      功能：前進、吃水果、撞牆死掉
      */
+    ALSnakeWorldPoint headPoint = [(NSValue *)[self.bodyPoints firstObject] worldPointWithValue];
+    
     if (self.isDead) {
         return;
     }
     else if (self.bodyPoints.count<=0) {
         return;
     }
+    //若是頭的位置不合理
+    else if (!(headPoint.x < self.world.size.width && headPoint.y < self.world.size.height)){
+        NSLog(@"[Error]");
+        return;
+    }
     
-    
-    /*
-    typedef enum{
-        SnakeHeadingStateWillBeDead,
-        SnakeHeadingStateWillEatFruit,
-        SnakeHeadingStateWillMove
-    }SnakeHeadingState;
-    
-    SnakeHeadingState headingState;
-    */
-    
-    
+    NSLog(@"headPpoint.x :%i , %i",headPoint.x,headPoint.y);
 
     NSMutableArray *bodyWithoutTail = [self.bodyPoints mutableCopy];
     [bodyWithoutTail removeLastObject];

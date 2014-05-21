@@ -40,15 +40,23 @@
     CGFloat widthOfABlockOnScreen = self.bounds.size.width / snakeWorld.size.width;
     CGFloat heightOfABlockOnScreen = self.bounds.size.height / snakeWorld.size.height;
     
+//    NSLog(@"widthOfABlockOnScreen :%f, heightOfABlockOnScreen :%f",widthOfABlockOnScreen,heightOfABlockOnScreen);
+    
     //# 畫蛇
     if (!snake) {
         return;
     }
     
+    [[UIColor purpleColor] set];
+    ALSnakeWorldPoint point = ALSnakeWorldPointMake(0, 0);
+    CGRect rectOfSnake = CGRectMake( widthOfABlockOnScreen * point.x, heightOfABlockOnScreen* point.y, widthOfABlockOnScreen, heightOfABlockOnScreen);
+    CGContextFillRect(contextRef, rectOfSnake);
+    
+    
     [[UIColor blackColor] set];
     for (NSValue *value in snake.bodyPoints) {
         ALSnakeWorldPoint point = [value worldPointWithValue];
-        CGRect rectOfSnake = CGRectMake( widthOfABlockOnScreen * point.x, heightOfABlockOnScreen*point.y, widthOfABlockOnScreen, heightOfABlockOnScreen);
+        CGRect rectOfSnake = CGRectMake( widthOfABlockOnScreen * point.x, heightOfABlockOnScreen* point.y, widthOfABlockOnScreen, heightOfABlockOnScreen);
         CGContextFillRect(contextRef, rectOfSnake);
     }
     

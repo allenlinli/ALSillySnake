@@ -10,7 +10,7 @@
 #import "ALSnake.h"
 
 const NSInteger ALSnakeWorldSizeWidth = 12;
-const NSInteger ALSnakeWorldSizeHeight = ALSnakeWorldSizeWidth * 2;
+const NSInteger ALSnakeWorldSizeHeight = ALSnakeWorldSizeWidth * 480/320;
 
 @implementation ALSnakeWorld
 
