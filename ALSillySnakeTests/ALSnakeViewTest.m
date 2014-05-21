@@ -26,9 +26,10 @@
     [super tearDown];
 }
 
-//- (void)testExample
-//{
-//    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
-//}
+- (void)testExample
+{
+    XCTAssertTrue(self.bounds.size.width == 320, @"! self.bounds.size.width == 320");
+    XCTAssertTrue(self.bounds.size.height == 480, @"! self.bounds.size.height == 480");
+}
 
 @end

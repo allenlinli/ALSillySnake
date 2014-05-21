@@ -18,6 +18,8 @@
  
  */
 
+extern const NSInteger GameSpeed;
+
 typedef enum : NSUInteger {
     ALSnakeWorldGameStateEnd,
     ALSnakeWorldGameStateRunning,

@@ -77,4 +77,13 @@
     XCTAssertFalse([self.world isPointInSnakeBodyWithPoint:self.world.fruitPoint],@"the new fruit should not be in snake body");
 }
 
+-(void)testIsWorldPointContainedInArray{
+    ALSnakeWorld *world = self.world;
+    ALSnake *snake = [[ALSnake alloc] initWithWorld:world length:3];
+    world.snake = snake;
+    
+    
+    XCTAssertTrue(isWorldPointContainedInArray( [(NSValue *)[snake.bodyPoints firstObject] worldPointWithValue], snake.bodyPoints), @"!isWorldPointContainedInArray( [(NSValue *)[snake.bodyPoints firstObject] worldPointWithValue], snake.bodyPoints)");
+}
+
 @end

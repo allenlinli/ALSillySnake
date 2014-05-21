@@ -9,11 +9,15 @@
 #import "ALSnakeWorld.h"
 #import "ALSnake.h"
 
-
+const NSInteger DefaultLengthOfSnakeInit = 10;
 
 @implementation ALSnake
 
 #pragma initialization
+
+-(ALSnake *)initWithWorld:(ALSnakeWorld *)world{
+    return [self initWithWorld:world length:DefaultLengthOfSnakeInit];
+}
 
 -(ALSnake *)initWithWorld:(ALSnakeWorld *)world length:(NSUInteger)length{
     _world = world;
@@ -160,15 +164,14 @@
     */
     
     
-    NSValue *oldTailValue = [self.bodyPoints lastObject];
-    ALSnakeWorldPoint oldTail = [oldTailValue worldPointWithValue];
-    
+
+    NSMutableArray *bodyWithoutTail = [self.bodyPoints mutableCopy];
+    [bodyWithoutTail removeLastObject];
     
     // # 頭前面是蛇的身體的話，就會死掉
     
     // SnakeHeadingStateWillBeDead
-    
-    if (isWorldPointContainedInArray(self.world.fruitPoint, self.bodyPoints)) {
+    if (isWorldPointContainedInArray(self.headingPoint, bodyWithoutTail)) {
         
         _isDead = YES;
     

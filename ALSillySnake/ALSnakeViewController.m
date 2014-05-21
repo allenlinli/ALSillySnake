@@ -11,11 +11,14 @@
 #import "ALSnakeWorld.h"
 #import "NSValue+ALSnakeValue.h"
 
+const NSInteger GameSpeed = 7;
+
 @interface ALSnakeViewController ()
 
 #pragma UI
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *startButton;
+@property (weak, nonatomic) IBOutlet UILabel *gameSateLabel;
 
 #pragma Objects
 @property (strong, nonatomic) ALSnakeWorld *world;
@@ -60,8 +63,10 @@
 {
     [super viewDidLoad];
     
-    // for testing
-    [self startButtonPressed:nil];
+    self.snakeView.layer.shadowColor = [UIColor blackColor].CGColor;
+    
+    self.gameSateLabel.text = @"貪食蛇";
+    self.gameSateLabel.hidden = NO;
     
     //加上手勢滑動
     [self addGestureRecognizerWithFourDerictions];
@@ -100,6 +105,9 @@
 }
 
 -(void)startGame{
+    self.gameSateLabel.hidden = YES;
+    
+    self.snakeView.layer.opacity = 1;
     
     //Pre-setup
     self.snake = nil;
@@ -108,12 +116,12 @@
     
     //Init
     self.world = [[ALSnakeWorld alloc] initWithSize:ALSnakeWorldSizeMake(ALSnakeWorldSizeWidth, ALSnakeWorldSizeHeight)];
-    self.snake = [[ALSnake alloc] initWithWorld:self.world length:3];
+    self.snake = [[ALSnake alloc] initWithWorld:self.world];
     
     [self.world makeFruit];
     
     //Run
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(runOneRound) userInfo:nil repeats:YES];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0/GameSpeed target:self selector:@selector(runOneRound) userInfo:nil repeats:YES];
     
     
 }
@@ -123,12 +131,6 @@
         //Error
         return;
     }
-    
-    if (self.snake.isDead) {
-        [self endGame];
-        return;
-    }
-    
     
     
     [self.snake move];
@@ -144,6 +146,14 @@
 -(void)endGame{
     [self.timer invalidate];
     self.timer = nil;
+    
+    self.gameSateLabel.text = @"GAME OVER";
+    self.gameSateLabel.hidden = NO;
+    
+    self.startButton.hidden = NO;
+    
+    self.snakeView.layer.opacity = 0.1;
+    
 }
 
 -(ALSnakeWorld *)snakeWorldForSnakeView:(ALSnakeView *)view{

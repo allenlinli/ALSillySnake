@@ -22,6 +22,8 @@
  
  */
 
+extern const NSInteger DefaultLengthOfSnakeInit;
+
 typedef enum{
     ALSnakeDirectionLeft,
     ALSnakeDirectionUp,
@@ -49,6 +51,7 @@ typedef enum{
 @property (readonly, nonatomic) BOOL isDead;
 
 /* */
+-(ALSnake *)initWithWorld:(ALSnakeWorld *)world;
 -(ALSnake *)initWithWorld:(ALSnakeWorld *)world length:(NSUInteger)length;
 
 /* Move a dot */

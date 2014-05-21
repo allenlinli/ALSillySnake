@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gIy-i5-VEN" customClass="ALSnakeView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gIy-i5-VEN" customClass="ALSnakeView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -28,9 +28,13 @@
                                 <color key="textColor" red="0.60000002384185791" green="0.40000000596046448" blue="0.20000000298023224" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PeQ-eS-U2C">
-                                <rect key="frame" x="117" y="414" width="87" height="35"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PeQ-eS-U2C">
+                                <rect key="frame" x="117" y="413" width="87" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="87" id="Bye-wi-kQ4"/>
+                                    <constraint firstAttribute="height" constant="35" id="N1Z-75-AmS"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="Start">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -39,10 +43,32 @@
                                     <action selector="startButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="HKg-lW-vWR"/>
                                 </connections>
                             </button>
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Over" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c5Y-By-X6q">
+                                <rect key="frame" x="65" y="44" width="189" height="62"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="189" id="AsM-Oe-Ulo"/>
+                                    <constraint firstAttribute="height" constant="62" id="HPw-6w-RRP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="PeQ-eS-U2C" secondAttribute="bottom" constant="120" id="ASl-4C-Mqh"/>
+                            <constraint firstAttribute="centerX" secondItem="PeQ-eS-U2C" secondAttribute="centerX" id="Gyg-aq-hrL"/>
+                            <constraint firstItem="c5Y-By-X6q" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" constant="44" id="WPf-mU-vn5"/>
+                            <constraint firstItem="gIy-i5-VEN" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="XaR-db-gvX"/>
+                            <constraint firstItem="gIy-i5-VEN" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="fxX-bo-eoH"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="gIy-i5-VEN" secondAttribute="bottom" id="krr-Xj-ytn"/>
+                            <constraint firstAttribute="centerX" secondItem="c5Y-By-X6q" secondAttribute="centerX" id="n3a-jc-DX0"/>
+                            <constraint firstAttribute="trailing" secondItem="gIy-i5-VEN" secondAttribute="trailing" id="zfr-1n-F7C"/>
+                        </constraints>
                     </view>
                     <connections>
+                        <outlet property="gameSateLabel" destination="c5Y-By-X6q" id="kik-AE-4Hd"/>
                         <outlet property="snakeView" destination="gIy-i5-VEN" id="Nh4-DR-ncn"/>
                         <outlet property="startButton" destination="PeQ-eS-U2C" id="AOE-8p-taZ"/>
                         <outlet property="timeLabel" destination="hg6-ya-kGz" id="JMf-cr-mRm"/>

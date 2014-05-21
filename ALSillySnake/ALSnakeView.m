@@ -37,9 +37,8 @@
      w * x = 螢幕上的x位置
      w * y = 螢幕上的y位置
      */
-    CGFloat widthOfABlockOnScreen = self.bounds.size.width/snakeWorld.size.width;
-    CGFloat heightOfABlockOnScreen = self.bounds.size.height/snakeWorld.size.height;
-
+    CGFloat widthOfABlockOnScreen = self.bounds.size.width / snakeWorld.size.width;
+    CGFloat heightOfABlockOnScreen = self.bounds.size.height / snakeWorld.size.height;
     
     //# 畫蛇
     if (!snake) {
@@ -55,8 +54,8 @@
     
     //# 畫水果
     [[UIColor greenColor] set];
-    ALSnakeWorldPoint point = snakeWorld.fruitPoint;
-    CGRect rectOfFruit = CGRectMake( widthOfABlockOnScreen * point.x, heightOfABlockOnScreen*point.y, widthOfABlockOnScreen, heightOfABlockOnScreen);
+    ALSnakeWorldPoint fruitPoint = snakeWorld.fruitPoint;
+    CGRect rectOfFruit = CGRectMake( widthOfABlockOnScreen * fruitPoint.x, heightOfABlockOnScreen * fruitPoint.y, widthOfABlockOnScreen, heightOfABlockOnScreen);
     CGContextFillRect(contextRef, rectOfFruit);
 }
 
