@@ -27,23 +27,18 @@ extern const NSInteger ALSnakeWorldSizeHeight;
 
 @interface ALSnakeWorld : NSObject 
 
-//邊界大小
 @property (assign, nonatomic) ALSnakeWorldSize size;
 
-//擁有一隻蛇
-@property (strong, nonatomic) ALSnake *snake;
-
-//擁有一個蘋果
-@property (assign, readonly, nonatomic) ALSnakeWorldPoint fruitPoint;
 
 #pragma Init
 -(ALSnakeWorld *)initWithSize:(ALSnakeWorldSize)size;
 
 #pragma Fruit Generator
+-(void)makeNewSnakeWithLength:(NSInteger)length;
+@property (strong, nonatomic) ALSnake *snake;
+
 -(void)makeFruit;
-
--(BOOL)isPointInSnakeBodyWithPoint:(ALSnakeWorldPoint)point;
-
+@property (assign, readonly, nonatomic) ALSnakeWorldPoint fruitPoint;
 
 @end
 

@@ -20,6 +20,7 @@
 
 @interface ALSnakeViewController : UIViewController <ALSnakeViewProtocol>
 -(void)startGame;
--(void)pauseGame;
 -(void)endGame;
+-(void)pauseGame;
+-(void)resumeGame;
 @end

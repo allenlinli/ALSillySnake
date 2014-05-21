@@ -24,13 +24,19 @@ const NSInteger ALSnakeWorldSizeHeight = ALSnakeWorldSizeWidth * 480/320;
     self = [super init];
     if (self) {
         self.size = size;
-        self.snake = [[ALSnake alloc] initWithWorld:self length:2];
+        [self makeNewSnakeWithLength:2];
     }
     
     return self;
 }
 
--(void)makeFruit{
+-(void)makeNewSnakeWithLength:(NSInteger)length
+{
+    self.snake = [[ALSnake alloc] initWithWorld:self length:length];
+}
+
+-(void)makeFruit
+{
     ALSnakeWorldPoint fruitPoint;
 
     do {

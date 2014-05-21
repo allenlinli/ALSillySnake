@@ -36,25 +36,22 @@ typedef enum{
 
 @interface ALSnake : NSObject
 
-
 #pragma Status
-@property (strong, nonatomic) NSMutableArray *bodyPoints;
-
+@property (readonly, nonatomic) NSArray *bodyPoints;
 @property (assign, nonatomic) ALSnakeDirection direction;
-
-@property (readonly, weak, nonatomic) ALSnakeWorld *world;
 
 #pragma Move
 /* if yes, the snake is dead. */
-@property (readonly, nonatomic) BOOL isDead;
+@property (readonly, nonatomic) BOOL isHeadHitBody;
 
 /* */
 -(ALSnake *)initWithWorld:(ALSnakeWorld *)world;
 -(ALSnake *)initWithWorld:(ALSnakeWorld *)world length:(NSUInteger)length;
 
 /* Move a dot */
--(void)move;
-
+- (void)move;
+- (void)extendBodyWithLength:(NSInteger)length;
+- (BOOL)isTouchingFruit:(ALSnakeWorldPoint)point;
 
 /* increase length by eat fruit */
 //-(void)increaseLength;

@@ -85,12 +85,14 @@ static NSTimeInterval const timerInterval = 0.5;
         return;
     }
     
-    
     [self.world.snake move];
-    
-    if (self.world.snake.isDead) {
+    if (self.world.snake.isHeadHitBody) {
         [self endGame];
         return;
+    }
+    if ([self.world.snake isTouchingFruit:self.world.fruitPoint]) {
+        [self.world.snake extendBodyWithLength:1];
+        [self.world makeFruit];
     }
     
     [self.snakeView setNeedsDisplay];
@@ -110,6 +112,9 @@ static NSTimeInterval const timerInterval = 0.5;
 -(void)pauseGame
 {
     
+}
+-(void)resumeGame
+{
 }
 
 #pragma mark -

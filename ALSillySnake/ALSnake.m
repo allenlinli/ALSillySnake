@@ -10,6 +10,12 @@
 #import "ALSnake.h"
 
 const NSInteger InitialSnakeLength = 10;
+@interface ALSnake ()
+{
+    NSMutableArray *bodyPoints;
+}
+@property (readonly, weak, nonatomic) ALSnakeWorld *world;
+@end
 
 @implementation ALSnake
 
@@ -33,12 +39,12 @@ const NSInteger InitialSnakeLength = 10;
     self = [super init];
     if (self) {
         _world = world;
-        self.bodyPoints = [[NSMutableArray alloc] init];
+        bodyPoints = [[NSMutableArray alloc] init];
         NSUInteger x = (NSUInteger) worldSize.width / 2.0;
         NSUInteger y = (NSUInteger) worldSize.height / 2.0;
         for (NSUInteger i = 0; i<length; i++) {
             NSValue *obj = [NSValue valueWithSnakeWorldPoint:ALSnakeWorldPointMake(x+i,y)];
-            [self.bodyPoints addObject:obj];
+            [bodyPoints addObject:obj];
         }
         self.direction = ALSnakeDirectionLeft;
     }
@@ -46,8 +52,8 @@ const NSInteger InitialSnakeLength = 10;
     return self;
 }
 
--(void)setDirection:(ALSnakeDirection)direction{
-    
+-(void)setDirection:(ALSnakeDirection)direction
+{    
     //分"上下"或"左右" 兩種情況
     if (self.direction == ALSnakeDirectionLeft || self.direction == ALSnakeDirectionRight) {
         if (direction == ALSnakeDirectionUp || direction == ALSnakeDirectionDown) {
@@ -64,13 +70,8 @@ const NSInteger InitialSnakeLength = 10;
 -(ALSnakeWorldPoint)headingPoint
 {
     /*
-     功能：
-     1. 前進一格
-     2. 穿牆
-     
-     實作：
-     1. 使用 mod 來做穿牆
-     2. 使用 xOffset, yOffset
+     說明：
+     頭即將要到的位置
      
      */
     
@@ -115,13 +116,22 @@ const NSInteger InitialSnakeLength = 10;
     return nextLocation;
 }
 
--(void)move {
+- (BOOL)isHeadHitBody
+{
+    NSMutableArray *bodyWithoutHead = [self.bodyPoints mutableCopy];
+    [bodyWithoutHead removeObject:[bodyWithoutHead objectAtIndex:0]];
+    ALSnakeWorldPoint headPoint = [[self.bodyPoints objectAtIndex:0] worldPointWithValue];
+    return isWorldPointContainedInArray(headPoint, bodyWithoutHead);
+}
+
+-(void)move
+{
     /*
      功能：前進、吃水果、撞牆死掉
      */
     ALSnakeWorldPoint headPoint = [(NSValue *)[self.bodyPoints firstObject] worldPointWithValue];
     
-    if (self.isDead) {
+    if (self.isHeadHitBody) {
         return;
     }
     else if (self.bodyPoints.count<=0) {
@@ -133,47 +143,22 @@ const NSInteger InitialSnakeLength = 10;
         return;
     }
 
-    NSMutableArray *bodyWithoutTail = [self.bodyPoints mutableCopy];
-    [bodyWithoutTail removeLastObject];
-    
-    // # 頭前面是蛇的身體的話，就會死掉
-    
-    // SnakeHeadingStateWillBeDead
-    if (isWorldPointContainedInArray(self.headingPoint, bodyWithoutTail)) {
-        
-        _isDead = YES;
-    
-        return;
-    
-    }
-    
-    //# 頭前面是水果的話，就會吃下去。並且讓世界產生一個水果
-    
-    else if (isWorldPointEqual(self.headingPoint, self.world.fruitPoint)){
-    
-        //頭增加一格。enqueue
-        
-        [self.bodyPoints insertObject:[NSValue valueWithSnakeWorldPoint:self.headingPoint] atIndex:0];
-    
-        [self.world makeFruit];
-        
-        return;
-    }
-    
-    //# 剩下情況，就會前進一格
-    
-    else{
-    
-        //頭增加一格。enqueue
-        
-        [self.bodyPoints insertObject:[NSValue valueWithSnakeWorldPoint:self.headingPoint] atIndex:0];
-        
-        //尾巴少掉一格。dequeue
-        
-        [self.bodyPoints removeObjectAtIndex:self.bodyPoints.count-1];
-    
-        return;
-    }
-
+    ALSnakeWorldPoint headingPoint = self.headingPoint;
+    [bodyPoints insertObject:[NSValue valueWithSnakeWorldPoint:headingPoint] atIndex:0];
+    [bodyPoints removeObjectAtIndex:self.bodyPoints.count-1];
 }
+
+- (void)extendBodyWithLength:(NSInteger)length
+{
+    ALSnakeWorldPoint headPoint = [[self.bodyPoints lastObject] worldPointWithValue];
+    [bodyPoints addObject:[NSValue valueWithSnakeWorldPoint:headPoint]];
+}
+
+- (BOOL)isTouchingFruit:(ALSnakeWorldPoint)point
+{
+    return isWorldPointContainedInArray(point, self.bodyPoints);
+}
+
+@synthesize bodyPoints;
+
 @end

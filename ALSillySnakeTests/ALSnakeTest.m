@@ -12,7 +12,7 @@
 #import "NSValue+ALSnakeValue.h"
 
 @interface ALSnakeTest : XCTestCase
-@property (strong, nonatomic) ALSnake *snake;
+//@property (strong, nonatomic) ALSnake *snake;
 @property (strong, nonatomic) ALSnakeWorld *world;
 @end
 
@@ -28,8 +28,8 @@
     NSUInteger width = 20;
     NSUInteger height = 20;
     ALSnakeWorldSize worldSize = ALSnakeWorldSizeMake(width, height);
-    self.world = [[ALSnakeWorld alloc]initWithSize:worldSize];
-    self.snake = [[ALSnake alloc] initWithWorld:self.world length:length];
+    self.world = [[ALSnakeWorld alloc] initWithSize:worldSize];
+    [self.world makeNewSnakeWithLength:length];
     
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }
@@ -37,15 +37,15 @@
 - (void)tearDown
 {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
-    self.snake = nil;
+//    self.snake = nil;
     [super tearDown];
 }
 
 - (void)testSnakeInit
 {
-    ALSnake *snake = self.snake;
+    ALSnake *snake = self.world.snake;
     
-    for (NSUInteger i = 0; i<self.snake.bodyPoints.count; i++) {
+    for (NSUInteger i = 0; i< snake.bodyPoints.count; i++) {
         NSValue *value = snake.bodyPoints[i];
         XCTAssertNotNil(value, @"snake.body[i] is nil");
         ALSnakeWorldPoint body = [snake.bodyPoints[i] worldPointWithValue];
@@ -56,7 +56,7 @@
 }
 
 -(void)testMove{
-    ALSnake *snake = self.snake;
+    ALSnake *snake = self.world.snake;
     
     ALSnakeWorldPoint originalHeadPoint = [(NSValue *)[snake.bodyPoints firstObject] worldPointWithValue];
     
@@ -66,10 +66,10 @@
     XCTAssertTrue(newHeadPoint.x == originalHeadPoint.x -1, @"newHeadPoint.x == originalHeadPoint.x -1");
 }
 
--(void)testChangeDeriction{
-    ALSnake *snake = self.snake;
-    
-    
+-(void)testChangeDeriction
+{
+    ALSnake *snake = self.world.snake;
+
     XCTAssertTrue(snake.direction == ALSnakeDirectionLeft, @"snake.direction == ALSnakeDirectionLeft");
     snake.direction = ALSnakeDirectionDown;
     XCTAssertTrue(snake.direction == ALSnakeDirectionDown, @"snake.direction == ALSnakeDirectionDown");
@@ -78,7 +78,7 @@
 }
 
 -(void)testChangeDerictionAndMove{
-    ALSnake *snake = self.snake;
+    ALSnake *snake = self.world.snake;
     
     snake.direction = ALSnakeDirectionDown;
     XCTAssertTrue(snake.direction == ALSnakeDirectionDown, @"snake.direction == ALSnakeDirectionDown");
