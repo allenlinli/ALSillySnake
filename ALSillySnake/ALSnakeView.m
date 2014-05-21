@@ -47,11 +47,6 @@
         return;
     }
     
-    [[UIColor purpleColor] set];
-    ALSnakeWorldPoint point = ALSnakeWorldPointMake(0, 0);
-    CGRect rectOfSnake = CGRectMake( widthOfABlockOnScreen * point.x, heightOfABlockOnScreen* point.y, widthOfABlockOnScreen, heightOfABlockOnScreen);
-    CGContextFillRect(contextRef, rectOfSnake);
-    
     
     [[UIColor blackColor] set];
     for (NSValue *value in snake.bodyPoints) {

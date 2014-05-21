@@ -63,8 +63,6 @@ const NSInteger GameSpeed = 7;
 {
     [super viewDidLoad];
     
-    self.snakeView.layer.shadowColor = [UIColor blackColor].CGColor;
-    
     self.gameSateLabel.text = @"貪食蛇";
     self.gameSateLabel.hidden = NO;
     
