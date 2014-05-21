@@ -38,11 +38,53 @@
     return self;
 }
 
+-(void)addGestureRecognizerWithFourDerictions{
+    UISwipeGestureRecognizer *gestureRecognizer0 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe:)];
+	gestureRecognizer0.direction = UISwipeGestureRecognizerDirectionRight;
+	[self.snakeView addGestureRecognizer:gestureRecognizer0];
+    
+    UISwipeGestureRecognizer *gestureRecognizer1 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe:)];
+	gestureRecognizer1.direction = UISwipeGestureRecognizerDirectionLeft;
+	[self.snakeView addGestureRecognizer:gestureRecognizer1];
+    
+    UISwipeGestureRecognizer *gestureRecognizer2 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe:)];
+	gestureRecognizer2.direction = UISwipeGestureRecognizerDirectionUp;
+	[self.snakeView addGestureRecognizer:gestureRecognizer2];
+    
+    UISwipeGestureRecognizer *gestureRecognizer3 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe:)];
+	gestureRecognizer3.direction = UISwipeGestureRecognizerDirectionDown;
+	[self.snakeView addGestureRecognizer:gestureRecognizer3];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // for testing
+    [self startButtonPressed:nil];
+    
+    //加上手勢滑動
+    [self addGestureRecognizerWithFourDerictions];
 }
 
+-(void)swipe:(UISwipeGestureRecognizer *)gestureRecognizer{
+    switch (gestureRecognizer.direction) {
+        case UISwipeGestureRecognizerDirectionRight:
+            self.snake.direction = ALSnakeDirectionRight;
+            break;
+        case UISwipeGestureRecognizerDirectionLeft:
+            self.snake.direction = ALSnakeDirectionLeft;
+            break;
+        case UISwipeGestureRecognizerDirectionUp:
+            self.snake.direction = ALSnakeDirectionUp;
+            break;
+        case UISwipeGestureRecognizerDirectionDown:
+            self.snake.direction = ALSnakeDirectionDown;
+            break;
+        default:
+            break;
+    }
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -65,11 +107,14 @@
     self.snakeView.delegate = self;
     
     //Init
-    self.world = [[ALSnakeWorld alloc] initWithSize:ALSnakeWorldSizeMake(40, 40)];
+    self.world = [[ALSnakeWorld alloc] initWithSize:ALSnakeWorldSizeMake(ALSnakeWorldSizeWidth, ALSnakeWorldSizeHeight)];
     self.snake = [[ALSnake alloc] initWithWorld:self.world length:3];
     
-    //uncomplete
+    [self.world makeFruit];
+    
+    //Run
     self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(runOneRound) userInfo:nil repeats:YES];
+    
     
 }
 
@@ -79,18 +124,26 @@
         return;
     }
     
-    if (self.snake.isHeadHitBody) {
+    if (self.snake.isDead) {
         [self endGame];
         return;
     }
     
+    
+    
     [self.snake move];
     
-    NSValue *value = self.snake.points[0];
-    ALSnakeWorldPoint head = [value snakeWorldPointWithValue];
-    
+    if (self.snake.isDead) {
+        [self endGame];
+        return;
+    }
     
     [self.snakeView setNeedsDisplay];
+}
+
+-(void)endGame{
+    [self.timer invalidate];
+    self.timer = nil;
 }
 
 -(ALSnakeWorld *)snakeWorldForSnakeView:(ALSnakeView *)view{

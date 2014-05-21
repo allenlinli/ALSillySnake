@@ -18,13 +18,19 @@
  
  */
 
+typedef enum : NSUInteger {
+    ALSnakeWorldGameStateEnd,
+    ALSnakeWorldGameStateRunning,
+    ALSnakeWorldGameStatePause,
+} ALSnakeWorldGameState;
+
 @interface ALSnakeViewController : UIViewController <ALSnakeViewProtocol>
 
 #pragma Game State
+@property (assign, readonly, nonatomic) ALSnakeWorldGameState gameState;
 -(void)startGame;
 -(void)pauseGame;
 -(void)endGame;
--(void)gameState;
 
 #pragma Timer
 -(void)runOneRound;

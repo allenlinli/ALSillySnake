@@ -36,16 +36,17 @@ typedef enum{
 
 
 #pragma Status
-@property (strong, nonatomic) NSMutableArray *points;
-@property (readonly, nonatomic) NSUInteger bodyLength;
+@property (strong, nonatomic) NSMutableArray *bodyPoints;
 
 @property (assign, nonatomic) ALSnakeDirection direction;
 
 @property (readonly, weak, nonatomic) ALSnakeWorld *world;
 
+@property (strong, nonatomic) UIColor *color;
+
 #pragma Move
 /* if yes, the snake is dead. */
-@property (readonly, nonatomic) BOOL isHeadHitBody;
+@property (readonly, nonatomic) BOOL isDead;
 
 /* */
 -(ALSnake *)initWithWorld:(ALSnakeWorld *)world length:(NSUInteger)length;
