@@ -35,12 +35,12 @@ const NSInteger ALSnakeWorldSizeHeight = 40;
     do {
         fruitPoint.x = arc4random() % self.size.width;
         fruitPoint.y = arc4random() % self.size.height;
-    } while ([self isPointInSnakeBody:fruitPoint]);
+    } while ([self isPointInSnakeBodyWithPoint:fruitPoint]);
     
     _fruitPoint = fruitPoint;
 }
 
--(BOOL)isPointInSnakeBody:(ALSnakeWorldPoint)point{
+-(BOOL)isPointInSnakeBodyWithPoint:(ALSnakeWorldPoint)point{
     for (NSValue *value in self.snake.bodyPoints) {
         ALSnakeWorldPoint snakePoint = [value snakeWorldPointWithValue];
         if (isWorldPointEqual(snakePoint, point)) {

@@ -42,7 +42,7 @@ extern const NSInteger ALSnakeWorldSizeHeight;
 #pragma Fruit Generator
 -(void)makeFruit;
 
--(BOOL)isPointInSnakeBody:(ALSnakeWorldPoint)point;
+-(BOOL)isPointInSnakeBodyWithPoint:(ALSnakeWorldPoint)point;
 
 
 @end

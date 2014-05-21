@@ -61,9 +61,9 @@
     
     ALSnakeWorldPoint snakePoint = [(NSValue *)[snake.bodyPoints firstObject] snakeWorldPointWithValue];
     NSLog(@"log snakePoint:%i %i",snakePoint.x,snakePoint.y);
-    XCTAssertTrue([world isPointInSnakeBody:ALSnakeWorldPointMake(ALSnakeWorldSizeWidth/2, ALSnakeWorldSizeHeight/2)], @"[world isPointInSnakeBody:ALSnakeWorldPointMake(20, 20)]");
-     XCTAssertTrue([world isPointInSnakeBody:ALSnakeWorldPointMake(ALSnakeWorldSizeWidth/2+1, ALSnakeWorldSizeHeight/2)], @"[world isPointInSnakeBody:ALSnakeWorldPointMake(21, 20)]");
-     XCTAssertTrue([world isPointInSnakeBody:ALSnakeWorldPointMake(ALSnakeWorldSizeWidth/2+2, ALSnakeWorldSizeHeight/2)], @"[world isPointInSnakeBody:ALSnakeWorldPointMake(22, 20)]");
+    XCTAssertTrue([world isPointInSnakeBodyWithPoint:ALSnakeWorldPointMake(ALSnakeWorldSizeWidth/2, ALSnakeWorldSizeHeight/2)], @"[world isPointInSnakeBody:ALSnakeWorldPointMake(20, 20)]");
+     XCTAssertTrue([world isPointInSnakeBodyWithPoint:ALSnakeWorldPointMake(ALSnakeWorldSizeWidth/2+1, ALSnakeWorldSizeHeight/2)], @"[world isPointInSnakeBody:ALSnakeWorldPointMake(21, 20)]");
+     XCTAssertTrue([world isPointInSnakeBodyWithPoint:ALSnakeWorldPointMake(ALSnakeWorldSizeWidth/2+2, ALSnakeWorldSizeHeight/2)], @"[world isPointInSnakeBody:ALSnakeWorldPointMake(22, 20)]");
     
 }
 
@@ -73,6 +73,8 @@
     
     XCTAssert(world.fruitPoint.x >=0 && world.fruitPoint.x < world.size.width, @"world.fruitPoint.x >=0 && world.fruitPoint.x < world.size.width");
     XCTAssert(world.fruitPoint.y >=0 && world.fruitPoint.y < world.size.height, @"world.fruitPoint.y >=0 && world.fruitPoint.y < world.size.height");
+    
+    XCTAssertFalse([self.world isPointInSnakeBodyWithPoint:self.world.fruitPoint],@"the new fruit should not be in snake body");
 }
 
 @end

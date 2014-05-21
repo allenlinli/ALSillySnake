@@ -148,9 +148,45 @@
         return;
     }
     
-    //# 頭前面是水果的話，吃掉它
+    typedef enum{
+        SnakeHeadingStateWillBeDead,
+        SnakeHeadingStateWillEatFruit,
+        SnakeHeadingStateWillMove
+    }SnakeHeadingState;
+    
+    SnakeHeadingState headingState;
+    
+    
+    if (<#condition#>) {
+        <#statements#>
+    }
+    NSValue *oldTailValue = [self.bodyPoints lastObject];
+    ALSnakeWorldPoint oldTail = [oldTailValue snakeWorldPointWithValue];
+    
+    [self.world isPointInSnakeBodyWithPoint:self.headingPoint];
     
     //# 頭前面是蛇的身體的話，就會死掉
+    
+    switch (headingState) {
+        case <#constant#>:
+            <#statements#>
+            break;
+            
+        default:
+            break;
+    }
+    
+    if ([self.world isPointInSnakeBodyWithPoint:self.headingPoint]) {
+        _isDead = YES;
+        return;
+    }
+    //# 頭前面是水果的話，就會吃下去
+    else if ([self.world isPointInSnakeBodyWithPoint:self.headingPoint]){
+        
+    }
+    //# 頭前面是水果的話，吃掉它
+    
+    
     
     //# 剩下情況，就會前進一格
     

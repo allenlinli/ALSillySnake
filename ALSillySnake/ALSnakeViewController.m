@@ -37,9 +37,6 @@
     }
     return self;
 }
-- (IBAction)segmentControllerPressed:(id)sender {
-    
-}
 
 -(void)addGestureRecognizerWithFourDerictions{
     UISwipeGestureRecognizer *gestureRecognizer0 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe:)];
@@ -130,7 +127,13 @@
         return;
     }
     
+    
+    
     [self.snake move];
+    
+    if (self.snake.isDead) {
+        self.
+    }
     
     NSValue *value = [self.snake.bodyPoints firstObject];
     ALSnakeWorldPoint head = [value snakeWorldPointWithValue];
