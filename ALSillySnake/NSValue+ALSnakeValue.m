@@ -15,7 +15,7 @@
 	return	[NSValue valueWithBytes:&point objCType:@encode(ALSnakeWorldPoint)];
 }
 
-- (ALSnakeWorldPoint)snakeWorldPointWithValue{
+- (ALSnakeWorldPoint)worldPointWithValue{
     if (strcmp([self objCType], @encode(ALSnakeWorldPoint)) != 0) {
         return ALSnakeWorldPointMake(0, 0);
     }

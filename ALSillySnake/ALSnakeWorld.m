@@ -9,8 +9,8 @@
 #import "ALSnakeWorld.h"
 #import "ALSnake.h"
 
-const NSInteger ALSnakeWorldSizeWidth = 40;
-const NSInteger ALSnakeWorldSizeHeight = 40;
+const NSInteger ALSnakeWorldSizeWidth = 12;
+const NSInteger ALSnakeWorldSizeHeight = 12;
 
 @implementation ALSnakeWorld
 
@@ -42,7 +42,7 @@ const NSInteger ALSnakeWorldSizeHeight = 40;
 
 -(BOOL)isPointInSnakeBodyWithPoint:(ALSnakeWorldPoint)point{
     for (NSValue *value in self.snake.bodyPoints) {
-        ALSnakeWorldPoint snakePoint = [value snakeWorldPointWithValue];
+        ALSnakeWorldPoint snakePoint = [value worldPointWithValue];
         if (isWorldPointEqual(snakePoint, point)) {
             return true;
         }

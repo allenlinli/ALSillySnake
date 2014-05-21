@@ -110,7 +110,9 @@
     self.world = [[ALSnakeWorld alloc] initWithSize:ALSnakeWorldSizeMake(ALSnakeWorldSizeWidth, ALSnakeWorldSizeHeight)];
     self.snake = [[ALSnake alloc] initWithWorld:self.world length:3];
     
-    //uncomplete
+    [self.world makeFruit];
+    
+    //Run
     self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(runOneRound) userInfo:nil repeats:YES];
     
     
@@ -132,14 +134,16 @@
     [self.snake move];
     
     if (self.snake.isDead) {
-        self.
+        [self endGame];
+        return;
     }
     
-    NSValue *value = [self.snake.bodyPoints firstObject];
-    ALSnakeWorldPoint head = [value snakeWorldPointWithValue];
-    
-    
     [self.snakeView setNeedsDisplay];
+}
+
+-(void)endGame{
+    [self.timer invalidate];
+    self.timer = nil;
 }
 
 -(ALSnakeWorld *)snakeWorldForSnakeView:(ALSnakeView *)view{

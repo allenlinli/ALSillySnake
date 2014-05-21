@@ -41,15 +41,23 @@
     CGFloat heightOfABlockOnScreen = self.bounds.size.height/snakeWorld.size.height;
 
     
-    
-    if (snake) {
-        [[UIColor blackColor] set];
-        for (NSValue *value in snake.bodyPoints) {
-            ALSnakeWorldPoint point = [value snakeWorldPointWithValue];
-            CGRect rect = CGRectMake( widthOfABlockOnScreen * point.x, heightOfABlockOnScreen*point.y, widthOfABlockOnScreen, heightOfABlockOnScreen);
-			CGContextFillRect(contextRef, rect);
-        }
+    //# 畫蛇
+    if (!snake) {
+        return;
     }
+    
+    [[UIColor blackColor] set];
+    for (NSValue *value in snake.bodyPoints) {
+        ALSnakeWorldPoint point = [value worldPointWithValue];
+        CGRect rectOfSnake = CGRectMake( widthOfABlockOnScreen * point.x, heightOfABlockOnScreen*point.y, widthOfABlockOnScreen, heightOfABlockOnScreen);
+        CGContextFillRect(contextRef, rectOfSnake);
+    }
+    
+    //# 畫水果
+    [[UIColor greenColor] set];
+    ALSnakeWorldPoint point = snakeWorld.fruitPoint;
+    CGRect rectOfFruit = CGRectMake( widthOfABlockOnScreen * point.x, heightOfABlockOnScreen*point.y, widthOfABlockOnScreen, heightOfABlockOnScreen);
+    CGContextFillRect(contextRef, rectOfFruit);
 }
 
 

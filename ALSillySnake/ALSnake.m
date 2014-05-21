@@ -66,7 +66,7 @@
 
 -(ALSnakeWorldPoint)headPoint{
     NSValue *value = [self.bodyPoints firstObject];
-    return [value snakeWorldPointWithValue];
+    return [value worldPointWithValue];
 }
 
 
@@ -134,7 +134,7 @@
 
 -(ALSnakeWorldPoint)tailPoint{
     NSValue *value = [self.bodyPoints lastObject];
-    return [value snakeWorldPointWithValue];
+    return [value worldPointWithValue];
 }
 
 -(void)move{
@@ -148,6 +148,8 @@
         return;
     }
     
+    
+    /*
     typedef enum{
         SnakeHeadingStateWillBeDead,
         SnakeHeadingStateWillEatFruit,
@@ -155,45 +157,52 @@
     }SnakeHeadingState;
     
     SnakeHeadingState headingState;
+    */
     
     
-    if (<#condition#>) {
-        <#statements#>
-    }
     NSValue *oldTailValue = [self.bodyPoints lastObject];
-    ALSnakeWorldPoint oldTail = [oldTailValue snakeWorldPointWithValue];
+    ALSnakeWorldPoint oldTail = [oldTailValue worldPointWithValue];
     
-    [self.world isPointInSnakeBodyWithPoint:self.headingPoint];
     
-    //# 頭前面是蛇的身體的話，就會死掉
+    // # 頭前面是蛇的身體的話，就會死掉
     
-    switch (headingState) {
-        case <#constant#>:
-            <#statements#>
-            break;
-            
-        default:
-            break;
+    // SnakeHeadingStateWillBeDead
+    
+    if (isWorldPointContainedInArray(self.world.fruitPoint, self.bodyPoints)) {
+        
+        _isDead = YES;
+    
+        return;
+    
     }
     
-    if ([self.world isPointInSnakeBodyWithPoint:self.headingPoint]) {
-        _isDead = YES;
+    //# 頭前面是水果的話，就會吃下去。並且讓世界產生一個水果
+    
+    else if (isWorldPointEqual(self.headingPoint, self.world.fruitPoint)){
+    
+        //頭增加一格。enqueue
+        
+        [self.bodyPoints insertObject:[NSValue valueWithSnakeWorldPoint:self.headingPoint] atIndex:0];
+    
+        [self.world makeFruit];
+        
         return;
     }
-    //# 頭前面是水果的話，就會吃下去
-    else if ([self.world isPointInSnakeBodyWithPoint:self.headingPoint]){
-        
-    }
-    //# 頭前面是水果的話，吃掉它
-    
-    
     
     //# 剩下情況，就會前進一格
     
-    //頭增加一格。enqueue
-    [self.bodyPoints insertObject:[NSValue valueWithSnakeWorldPoint:self.headingPoint] atIndex:0];
+    else{
     
-    //尾巴少掉一格。dequeue
-    [self.bodyPoints removeObjectAtIndex:self.bodyPoints.count-1];
+        //頭增加一格。enqueue
+        
+        [self.bodyPoints insertObject:[NSValue valueWithSnakeWorldPoint:self.headingPoint] atIndex:0];
+        
+        //尾巴少掉一格。dequeue
+        
+        [self.bodyPoints removeObjectAtIndex:self.bodyPoints.count-1];
+    
+        return;
+    }
+
 }
 @end

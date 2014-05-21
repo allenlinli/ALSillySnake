@@ -59,7 +59,7 @@
     ALSnake *snake = [[ALSnake alloc] initWithWorld:world length:3];
     world.snake = snake;
     
-    ALSnakeWorldPoint snakePoint = [(NSValue *)[snake.bodyPoints firstObject] snakeWorldPointWithValue];
+    ALSnakeWorldPoint snakePoint = [(NSValue *)[snake.bodyPoints firstObject] worldPointWithValue];
     NSLog(@"log snakePoint:%i %i",snakePoint.x,snakePoint.y);
     XCTAssertTrue([world isPointInSnakeBodyWithPoint:ALSnakeWorldPointMake(ALSnakeWorldSizeWidth/2, ALSnakeWorldSizeHeight/2)], @"[world isPointInSnakeBody:ALSnakeWorldPointMake(20, 20)]");
      XCTAssertTrue([world isPointInSnakeBodyWithPoint:ALSnakeWorldPointMake(ALSnakeWorldSizeWidth/2+1, ALSnakeWorldSizeHeight/2)], @"[world isPointInSnakeBody:ALSnakeWorldPointMake(21, 20)]");

@@ -31,3 +31,5 @@ BOOL isWorldSizeEqual(ALSnakeWorldSize one,ALSnakeWorldSize two);
 
 BOOL isWorldPointEqual(ALSnakeWorldPoint one,ALSnakeWorldPoint two);
 
+BOOL isWorldPointContainedInArray(ALSnakeWorldPoint point, NSArray *array);
+
