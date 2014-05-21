@@ -71,8 +71,6 @@
 }
 
 -(void)swipe:(UISwipeGestureRecognizer *)gestureRecognizer{
-    NSLog(@"gestureRecognizer:%@",gestureRecognizer);
-    
     switch (gestureRecognizer.direction) {
         case UISwipeGestureRecognizerDirectionRight:
             self.snake.direction = ALSnakeDirectionRight;
@@ -112,11 +110,12 @@
     self.snakeView.delegate = self;
     
     //Init
-    self.world = [[ALSnakeWorld alloc] initWithSize:ALSnakeWorldSizeMake(40, 40)];
+    self.world = [[ALSnakeWorld alloc] initWithSize:ALSnakeWorldSizeMake(ALSnakeWorldSizeWidth, ALSnakeWorldSizeHeight)];
     self.snake = [[ALSnake alloc] initWithWorld:self.world length:3];
     
     //uncomplete
     self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(runOneRound) userInfo:nil repeats:YES];
+    
     
 }
 
@@ -133,7 +132,7 @@
     
     [self.snake move];
     
-    NSValue *value = self.snake.bodyPoints[0];
+    NSValue *value = [self.snake.bodyPoints firstObject];
     ALSnakeWorldPoint head = [value snakeWorldPointWithValue];
     
     

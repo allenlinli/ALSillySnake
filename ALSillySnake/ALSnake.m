@@ -155,8 +155,6 @@
     //# 剩下情況，就會前進一格
     
     //頭增加一格。enqueue
-//    NSLog(@"self.headingPointX: %i",self.headingPoint.x);
-//    NSLog(@"self.headingPointY: %i",self.headingPoint.y);
     [self.bodyPoints insertObject:[NSValue valueWithSnakeWorldPoint:self.headingPoint] atIndex:0];
     
     //尾巴少掉一格。dequeue

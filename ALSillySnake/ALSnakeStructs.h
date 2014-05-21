@@ -25,3 +25,9 @@ typedef struct {
 } ALSnakeWorldPoint;
 
 ALSnakeWorldPoint ALSnakeWorldPointMake(NSUInteger x, NSUInteger y);
+
+
+BOOL isWorldSizeEqual(ALSnakeWorldSize one,ALSnakeWorldSize two);
+
+BOOL isWorldPointEqual(ALSnakeWorldPoint one,ALSnakeWorldPoint two);
+

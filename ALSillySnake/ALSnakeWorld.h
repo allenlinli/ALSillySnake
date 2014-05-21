@@ -6,19 +6,25 @@
 //  Copyright (c) 2014 KKBOX. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "ALSnakeViewProtocol.h"
-#import "ALSnakeStructs.h"
-
-@class ALSnake;
-
 /*
+ README:
+ 
  世界擁有蛇
-
+ 
  世界負責產生水果
  
  
  */
+
+#import <Foundation/Foundation.h>
+#import "ALSnakeViewProtocol.h"
+#import "ALSnakeStructs.h"
+
+extern const NSInteger ALSnakeWorldSizeWidth;
+extern const NSInteger ALSnakeWorldSizeHeight;
+
+@class ALSnake;
+
 @interface ALSnakeWorld : NSObject 
 
 //邊界大小
@@ -28,15 +34,15 @@
 @property (strong, nonatomic) ALSnake *snake;
 
 //擁有一個蘋果
-@property (assign, nonatomic) ALSnakeWorldPoint *fruitPoint;
+@property (assign, readonly, nonatomic) ALSnakeWorldPoint fruitPoint;
 
 #pragma Init
 -(ALSnakeWorld *)initWithSize:(ALSnakeWorldSize)size;
 
 #pragma Fruit Generator
--(ALSnakeWorldPoint)fruitWolrdPointWithSnakeWorldPointX:(NSUInteger)x y:(NSUInteger)y;
+-(void)makeFruit;
 
-
+-(BOOL)isPointInSnakeBody:(ALSnakeWorldPoint)point;
 
 
 @end

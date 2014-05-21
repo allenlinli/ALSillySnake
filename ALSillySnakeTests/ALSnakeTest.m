@@ -29,7 +29,6 @@
     NSUInteger height = 20;
     ALSnakeWorldSize worldSize = ALSnakeWorldSizeMake(width, height);
     self.world = [[ALSnakeWorld alloc]initWithSize:worldSize];
-    
     self.snake = [[ALSnake alloc] initWithWorld:self.world length:length];
     
     // Put setup code here. This method is called before the invocation of each test method in the class.

@@ -8,11 +8,14 @@
 
 #import <XCTest/XCTest.h>
 #import "ALSnakeWorld.h"
+#import "ALSnake.h"
+
+
+
 
 @interface ALSnakeWorldTest : XCTestCase
-@property (assign, nonatomic) ALSnakeWorldSize worldSize;
-@property (assign, nonatomic) NSUInteger width;
-@property (assign, nonatomic) NSUInteger height;
+@property (strong, nonatomic) ALSnakeWorld *world;
+
 @end
 
 @implementation ALSnakeWorldTest
@@ -21,32 +24,55 @@
 {
     [super setUp];
     
-    self.width = 20;
-    self.height = 20;
-    self.worldSize = ALSnakeWorldSizeMake(self.width, self.height);
-
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+    
+    self.world = [[ALSnakeWorld alloc] initWithSize:ALSnakeWorldSizeMake(ALSnakeWorldSizeWidth, ALSnakeWorldSizeHeight)];
 }
 
 - (void)tearDown
 {
+    self.world = nil;
     // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
 }
 
 - (void)testWorldSizeMake
 {
-    ALSnakeWorldSize worldSize = self.worldSize;
-    XCTAssertTrue(worldSize.width == self.width, @"! worldSize.width == 20");
-    XCTAssertTrue(worldSize.height == self.height, @"! worldSize.height == 20");
+    ALSnakeWorldSize worldSize = ALSnakeWorldSizeMake(ALSnakeWorldSizeWidth, ALSnakeWorldSizeHeight);
+    XCTAssertTrue(worldSize.width == ALSnakeWorldSizeWidth, @"! worldSize.width == 20");
+    XCTAssertTrue(worldSize.height == ALSnakeWorldSizeHeight, @"! worldSize.height == 20");
 }
 
 - (void)testInitWorld
 {
-    ALSnakeWorld *world = [[ALSnakeWorld alloc] initWithSize:self.worldSize];
+    // testing temp
+    self.world = [[ALSnakeWorld alloc] initWithSize:ALSnakeWorldSizeMake(ALSnakeWorldSizeWidth, ALSnakeWorldSizeHeight)];
     
-    XCTAssertTrue(world.size.width == self.width, @"! world.size.width == width");
-    XCTAssertTrue(world.size.height == self.height, @"! world.size.height == height");
+    ALSnakeWorld *world = self.world;
+
+    XCTAssertNotNil(world, @"world is nil");
+    XCTAssertTrue(world.size.width == ALSnakeWorldSizeWidth, @"! world.size.width == width");
+    XCTAssertTrue(world.size.height == ALSnakeWorldSizeHeight, @"! world.size.height == height");
+}
+
+-(void)testIsPointInSnakeBody{
+    ALSnakeWorld *world = self.world;
+    ALSnake *snake = [[ALSnake alloc] initWithWorld:world length:3];
+    world.snake = snake;
+    
+    ALSnakeWorldPoint snakePoint = [(NSValue *)[snake.bodyPoints firstObject] snakeWorldPointWithValue];
+    NSLog(@"log snakePoint:%i %i",snakePoint.x,snakePoint.y);
+    XCTAssertTrue([world isPointInSnakeBody:ALSnakeWorldPointMake(ALSnakeWorldSizeWidth/2, ALSnakeWorldSizeHeight/2)], @"[world isPointInSnakeBody:ALSnakeWorldPointMake(20, 20)]");
+     XCTAssertTrue([world isPointInSnakeBody:ALSnakeWorldPointMake(ALSnakeWorldSizeWidth/2+1, ALSnakeWorldSizeHeight/2)], @"[world isPointInSnakeBody:ALSnakeWorldPointMake(21, 20)]");
+     XCTAssertTrue([world isPointInSnakeBody:ALSnakeWorldPointMake(ALSnakeWorldSizeWidth/2+2, ALSnakeWorldSizeHeight/2)], @"[world isPointInSnakeBody:ALSnakeWorldPointMake(22, 20)]");
+    
+}
+
+-(void)testMakeFruit{
+    ALSnakeWorld *world = self.world;
+    [world makeFruit];
+    
+    XCTAssert(world.fruitPoint.x >=0 && world.fruitPoint.x < world.size.width, @"world.fruitPoint.x >=0 && world.fruitPoint.x < world.size.width");
+    XCTAssert(world.fruitPoint.y >=0 && world.fruitPoint.y < world.size.height, @"world.fruitPoint.y >=0 && world.fruitPoint.y < world.size.height");
 }
 
 @end

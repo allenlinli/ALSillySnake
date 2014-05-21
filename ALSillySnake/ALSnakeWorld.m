@@ -9,11 +9,15 @@
 #import "ALSnakeWorld.h"
 #import "ALSnake.h"
 
+const NSInteger ALSnakeWorldSizeWidth = 40;
+const NSInteger ALSnakeWorldSizeHeight = 40;
+
 @implementation ALSnakeWorld
 
 -(ALSnakeWorld *)initWithSize:(ALSnakeWorldSize)size{
     /* Error handle */
     if (size.height<5 || size.width<5){
+        NSLog(@"[Error] init failed. size.width :%i  size.height :%i",size.width,size.height);
         return nil;
     }
     
@@ -25,12 +29,25 @@
     return self;
 }
 
-//-(ALSnakeWorldPoint)fruitWolrdPointWithSnakeWorldPointX:(NSUInteger)x y:(NSUInteger)y{
-//    //產生一個蘋果
-//    
-//    //蘋果要避免產生在有蛇的地方
-//    
-//    
-//}
+-(void)makeFruit{
+    ALSnakeWorldPoint fruitPoint;
+
+    do {
+        fruitPoint.x = arc4random() % self.size.width;
+        fruitPoint.y = arc4random() % self.size.height;
+    } while ([self isPointInSnakeBody:fruitPoint]);
+    
+    _fruitPoint = fruitPoint;
+}
+
+-(BOOL)isPointInSnakeBody:(ALSnakeWorldPoint)point{
+    for (NSValue *value in self.snake.bodyPoints) {
+        ALSnakeWorldPoint snakePoint = [value snakeWorldPointWithValue];
+        if (isWorldPointEqual(snakePoint, point)) {
+            return true;
+        }
+    }
+    return false;
+}
 
 @end

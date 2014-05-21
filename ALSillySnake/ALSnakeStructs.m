@@ -14,3 +14,12 @@ ALSnakeWorldPoint ALSnakeWorldPointMake(NSUInteger x, NSUInteger y){
     point.y = y;
     return point;
 }
+
+BOOL isWorldSizeEqual( ALSnakeWorldSize one, ALSnakeWorldSize two){
+    return (one.width == two.width && one.height == two.height);
+}
+
+
+BOOL isWorldPointEqual(ALSnakeWorldPoint one,ALSnakeWorldPoint two){
+    return (one.x == two.x && one.y == two.y);
+}
