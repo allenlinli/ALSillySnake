@@ -9,7 +9,7 @@
 #import "ALSnakeWorld.h"
 #import "ALSnake.h"
 
-const NSInteger InitialSnakeLength = 10;
+const NSInteger InitialSnakeLength = 5;
 @interface ALSnake ()
 {
     NSMutableArray *bodyPoints;
@@ -43,7 +43,8 @@ const NSInteger InitialSnakeLength = 10;
         NSUInteger x = (NSUInteger) worldSize.width / 2.0;
         NSUInteger y = (NSUInteger) worldSize.height / 2.0;
         for (NSUInteger i = 0; i<length; i++) {
-            NSValue *obj = [NSValue valueWithSnakeWorldPoint:ALSnakeWorldPointMake(x+i,y)];
+            NSUInteger x2 = (x+i) % self.world.size.width;
+            NSValue *obj = [NSValue valueWithSnakeWorldPoint:ALSnakeWorldPointMake(x2,y)];
             [bodyPoints addObject:obj];
         }
         self.direction = ALSnakeDirectionLeft;
@@ -67,7 +68,7 @@ const NSInteger InitialSnakeLength = 10;
     }
 }
 
--(ALSnakeWorldPoint)headingPoint
+-(ALSnakeWorldPoint)nextHeadPoint
 {
     /*
      說明：
@@ -81,13 +82,13 @@ const NSInteger InitialSnakeLength = 10;
     
     switch (self.direction) {
         case ALSnakeDirectionLeft:
-            nextLocation.x += -1;
+            nextLocation.x -= 1;
             break;
         case ALSnakeDirectionRight:
             nextLocation.x += 1;
             break;
         case ALSnakeDirectionUp:
-            nextLocation.y += -1;
+            nextLocation.y -= 1;
             break;
         case ALSnakeDirectionDown:
             nextLocation.y += 1;
@@ -119,39 +120,28 @@ const NSInteger InitialSnakeLength = 10;
 - (BOOL)isHeadHitBody
 {
     NSMutableArray *bodyWithoutHead = [self.bodyPoints mutableCopy];
-    [bodyWithoutHead removeObject:[bodyWithoutHead objectAtIndex:0]];
-    ALSnakeWorldPoint headPoint = [[self.bodyPoints objectAtIndex:0] worldPointWithValue];
+    [bodyWithoutHead removeObjectAtIndex:0];
+    ALSnakeWorldPoint headPoint = [[self.bodyPoints firstObject] worldPointWithValue];
     return isWorldPointContainedInArray(headPoint, bodyWithoutHead);
 }
 
 -(void)move
 {
-    /*
-     功能：前進、吃水果、撞牆死掉
-     */
     ALSnakeWorldPoint headPoint = [(NSValue *)[self.bodyPoints firstObject] worldPointWithValue];
     
-    if (self.isHeadHitBody) {
-        return;
-    }
-    else if (self.bodyPoints.count<=0) {
-        return;
-    }
-    //若是頭的位置不合理
-    else if (!(headPoint.x < self.world.size.width && headPoint.y < self.world.size.height)){
+   if (!(headPoint.x >=0 && headPoint.x < self.world.size.width && headPoint.y>=0 &&  headPoint.y < self.world.size.height)){
         NSLog(@"[Error]");
         return;
     }
 
-    ALSnakeWorldPoint headingPoint = self.headingPoint;
-    [bodyPoints insertObject:[NSValue valueWithSnakeWorldPoint:headingPoint] atIndex:0];
+    [bodyPoints insertObject:[NSValue valueWithSnakeWorldPoint:self.nextHeadPoint] atIndex:0];
     [bodyPoints removeObjectAtIndex:self.bodyPoints.count-1];
 }
 
 - (void)extendBodyWithLength:(NSInteger)length
 {
-    ALSnakeWorldPoint headPoint = [[self.bodyPoints lastObject] worldPointWithValue];
-    [bodyPoints addObject:[NSValue valueWithSnakeWorldPoint:headPoint]];
+    ALSnakeWorldPoint tailPoint = [[self.bodyPoints lastObject] worldPointWithValue];
+    [bodyPoints addObject:[NSValue valueWithSnakeWorldPoint:tailPoint]];
 }
 
 - (BOOL)isTouchingFruit:(ALSnakeWorldPoint)point

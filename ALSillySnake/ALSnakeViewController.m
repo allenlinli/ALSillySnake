@@ -11,7 +11,7 @@
 #import "ALSnakeWorld.h"
 #import "NSValue+ALSnakeValue.h"
 
-static NSTimeInterval const timerInterval = 0.5;
+static NSTimeInterval const timerInterval = 0.2;
 
 @interface ALSnakeViewController ()
 
@@ -67,8 +67,6 @@ static NSTimeInterval const timerInterval = 0.5;
 {
     self.gameSateLabel.hidden = YES;
     
-    self.snakeView.alpha = 1;
-    
     //Init
     self.world = [[ALSnakeWorld alloc] initWithSize:ALSnakeWorldSizeMake(ALSnakeWorldSizeWidth, ALSnakeWorldSizeHeight)];
     
@@ -76,6 +74,8 @@ static NSTimeInterval const timerInterval = 0.5;
     
     //Run
     self.timer = [NSTimer scheduledTimerWithTimeInterval:timerInterval target:self selector:@selector(runOneRound:) userInfo:nil repeats:YES];
+    
+    self.snakeView.alpha = 1;
 }
 
 -(void)runOneRound:(NSTimer *)timer

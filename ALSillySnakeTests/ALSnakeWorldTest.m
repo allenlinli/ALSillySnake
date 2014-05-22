@@ -61,10 +61,9 @@
     
     ALSnakeWorldPoint snakePoint = [(NSValue *)[snake.bodyPoints firstObject] worldPointWithValue];
     NSLog(@"log snakePoint:%i %i",snakePoint.x,snakePoint.y);
-    XCTAssertTrue([world isPointInSnakeBodyWithPoint:ALSnakeWorldPointMake(ALSnakeWorldSizeWidth/2, ALSnakeWorldSizeHeight/2)], @"[world isPointInSnakeBody:ALSnakeWorldPointMake(20, 20)]");
-     XCTAssertTrue([world isPointInSnakeBodyWithPoint:ALSnakeWorldPointMake(ALSnakeWorldSizeWidth/2+1, ALSnakeWorldSizeHeight/2)], @"[world isPointInSnakeBody:ALSnakeWorldPointMake(21, 20)]");
-     XCTAssertTrue([world isPointInSnakeBodyWithPoint:ALSnakeWorldPointMake(ALSnakeWorldSizeWidth/2+2, ALSnakeWorldSizeHeight/2)], @"[world isPointInSnakeBody:ALSnakeWorldPointMake(22, 20)]");
-    
+    XCTAssertTrue(isWorldPointContainedInArray(ALSnakeWorldPointMake(ALSnakeWorldSizeWidth/2, ALSnakeWorldSizeHeight/2), self.world.snake.bodyPoints), @"[world isPointInSnakeBody:ALSnakeWorldPointMake(20, 20)]");
+    XCTAssertTrue(isWorldPointContainedInArray(ALSnakeWorldPointMake(ALSnakeWorldSizeWidth/2+1, ALSnakeWorldSizeHeight/2), self.world.snake.bodyPoints), @"[world isPointInSnakeBody:ALSnakeWorldPointMake(21, 20)]");
+    XCTAssertTrue(isWorldPointContainedInArray(ALSnakeWorldPointMake(ALSnakeWorldSizeWidth/2+2, ALSnakeWorldSizeHeight/2), self.world.snake.bodyPoints), @"[world isPointInSnakeBody:ALSnakeWorldPointMake(22, 20)]");
 }
 
 -(void)testMakeFruit{
@@ -73,8 +72,8 @@
     
     XCTAssert(world.fruitPoint.x >=0 && world.fruitPoint.x < world.size.width, @"world.fruitPoint.x >=0 && world.fruitPoint.x < world.size.width");
     XCTAssert(world.fruitPoint.y >=0 && world.fruitPoint.y < world.size.height, @"world.fruitPoint.y >=0 && world.fruitPoint.y < world.size.height");
-    
-    XCTAssertFalse([self.world isPointInSnakeBodyWithPoint:self.world.fruitPoint],@"the new fruit should not be in snake body");
+
+    XCTAssertTrue(!isWorldPointContainedInArray(self.world.fruitPoint, self.world.snake.bodyPoints), @"[world isPointInSnakeBody:ALSnakeWorldPointMake(22, 20)]");
 }
 
 -(void)testIsWorldPointContainedInArray{

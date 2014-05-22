@@ -24,10 +24,15 @@ const NSInteger ALSnakeWorldSizeHeight = ALSnakeWorldSizeWidth * 480/320;
     self = [super init];
     if (self) {
         self.size = size;
-        [self makeNewSnakeWithLength:2];
+        [self makeNewSnake];
     }
     
     return self;
+}
+
+-(void)makeNewSnake
+{
+    self.snake = [[ALSnake alloc] initWithWorld:self];
 }
 
 -(void)makeNewSnakeWithLength:(NSInteger)length

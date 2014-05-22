@@ -40,6 +40,7 @@ extern const NSInteger ALSnakeWorldSizeHeight;
 -(void)makeFruit;
 @property (assign, readonly, nonatomic) ALSnakeWorldPoint fruitPoint;
 
+
 @end
 
 

@@ -24,9 +24,9 @@
 {
     [super setUp];
     
-    NSUInteger length = 3;
-    NSUInteger width = 20;
-    NSUInteger height = 20;
+    NSUInteger length = InitialSnakeLength;
+    NSUInteger width = ALSnakeWorldSizeWidth;
+    NSUInteger height = ALSnakeWorldSizeHeight;
     ALSnakeWorldSize worldSize = ALSnakeWorldSizeMake(width, height);
     self.world = [[ALSnakeWorld alloc] initWithSize:worldSize];
     [self.world makeNewSnakeWithLength:length];
@@ -49,7 +49,9 @@
         NSValue *value = snake.bodyPoints[i];
         XCTAssertNotNil(value, @"snake.body[i] is nil");
         ALSnakeWorldPoint body = [snake.bodyPoints[i] worldPointWithValue];
-        XCTAssertTrue(body.x == self.world.size.width/2.0+i && body.y ==  self.world.size.height/2.0,@"! (body.x == width/2.0+i && body.y == height/2.0)");
+        logWorldPoint(body);
+        NSUInteger x2 = (NSUInteger)(self.world.size.width/2.0+i) % self.world.size.width;
+        XCTAssertTrue(body.x == x2 && body.y ==  self.world.size.height/2.0,@"! (body.x == width/2.0+i && body.y == height/2.0)");
     }
     
     XCTAssert(snake.direction == ALSnakeDirectionLeft, @"! snake.direction == ALSnakeDirectionLeft");
@@ -88,6 +90,13 @@
     ALSnakeWorldPoint newHeadPoint = [(NSValue *)[snake.bodyPoints firstObject] worldPointWithValue];
     XCTAssertTrue(newHeadPoint.y == originalHeadPoint.y +1, @"newHeadPoint.x == originalHeadPoint.x + 1");
 }
+
+//-(void)testIsHeadHitBody
+//{
+//    ALSnake *snake = self.world.snake;
+//    
+//    
+//}
 
 
 @end
