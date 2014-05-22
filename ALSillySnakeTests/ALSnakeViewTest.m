@@ -1,6 +1,6 @@
 //
-//  ALSillySnakeTests.m
-//  ALSillySnakeTests
+//  ALSnakeViewTest.m
+//  ALSillySnake
 //
 //  Created by allenlin on 5/19/14.
 //  Copyright (c) 2014 KKBOX. All rights reserved.
@@ -8,11 +8,11 @@
 
 #import <XCTest/XCTest.h>
 
-@interface ALSillySnakeTests : XCTestCase
+@interface ALSnakeViewTest : XCTestCase
 
 @end
 
-@implementation ALSillySnakeTests
+@implementation ALSnakeViewTest
 
 - (void)setUp
 {
@@ -26,9 +26,6 @@
     [super tearDown];
 }
 
-- (void)testExample
-{
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
-}
+
 
 @end
