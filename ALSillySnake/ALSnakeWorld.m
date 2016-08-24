@@ -17,7 +17,7 @@ const NSInteger ALSnakeWorldSizeHeight = ALSnakeWorldSizeWidth * 480/320;
 -(ALSnakeWorld *)initWithSize:(ALSnakeWorldSize)size{
     /* Error handle */
     if (size.height<5 || size.width<5){
-        NSLog(@"[Error] init failed. size.width :%i  size.height :%i",size.width,size.height);
+        NSLog(@"[Error] init failed. size.width :%li  size.height :%li",(long)size.width,(long)size.height);
         return nil;
     }
     

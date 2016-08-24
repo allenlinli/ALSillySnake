@@ -36,12 +36,12 @@ BOOL isWorldPointContainedInArray(ALSnakeWorldPoint point, NSArray *array){
 }
 
 void logWorldPoint(ALSnakeWorldPoint point){
-    NSLog(@"logWorldPoint point.x:%i, point.y:%i",point.x,point.y);
+    NSLog(@"logWorldPoint point.x:%li, point.y:%li",(long)point.x,(long)point.y);
 }
 
 void logWorldPointArray(NSArray *array){
     for (NSValue *value in array) {
         ALSnakeWorldPoint point = [value worldPointWithValue];
-        NSLog(@"logWorldPoint point.x:%i, point.y:%i",point.x,point.y);
+        NSLog(@"logWorldPoint point.x:%li, point.y:%li",(long)point.x,(long)point.y);
     }
 }

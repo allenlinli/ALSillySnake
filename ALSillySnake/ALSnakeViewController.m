@@ -54,7 +54,7 @@ static NSTimeInterval const timerInterval = 0.2;
                           @(UISwipeGestureRecognizerDirectionLeft): @(ALSnakeDirectionLeft),
                           @(UISwipeGestureRecognizerDirectionUp): @(ALSnakeDirectionUp),
                           @(UISwipeGestureRecognizerDirectionDown): @(ALSnakeDirectionDown)};
-    self.world.snake.direction = [map[@(gestureRecognizer.direction)] integerValue];
+    self.world.snake.direction = [map[@(gestureRecognizer.direction)] intValue];
 }
 
 - (IBAction)startButtonPressed:(id)sender
